@@ -263,7 +263,7 @@ const translations = {
         "contactUsTitle": "Contactez-Nous",
         "contactUsIntro": "Contactez-nous pour toute question ou pour planifier votre prochaine visite. Notre équipe est à votre écoute.",
         "contactOpeningHoursTitle": "Horaires d'ouverture",
-        "contactOpeningHoursDays": "Lundi - Dimanche: 11h - 20h",
+        "contactOpeningHoursDays": "Mardi - Dimanche: 11h - 20h",
         "contactQuickContactTitle": "Contact rapide",
         "contactCoordinatesTitle": "Nos Coordonnées",
         "contactFollowUsTitle": "Suivez-Nous",
