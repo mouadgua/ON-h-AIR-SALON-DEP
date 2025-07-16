@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ON h'AIR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Libertinus+Math&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <script src="translate.js" defer></script>
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+            padding-top: 40px; /* Adjust if promo bar height changes, e.g., 36px-40px */
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff9f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        .preloader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .spinner {
+            width: 70px;
+            height: 70px;
+            border: 3px solid rgba(218, 165, 112, 0.3);
+            border-radius: 50%;
+            border-top-color: hsl(30, 59%, 65%);
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .hero {
+            background-size: cover;
+            background-position: center;
+        }
+        /* Remplace le style .service-card existant par celui-ci pour un look sobre, noir & blanc, moderne */
+
+        .service-card {
+            background: none;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0.7em 0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            min-height: unset;
+            position: relative;
+            overflow: visible;
+        }
+
+        .service-card h4 {
+            font-family: "Libertinus Math", system-ui;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #111;
+            margin: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.2;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+
+        .service-card span {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: #222;
+            margin: 0;
+            background: none;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0;
+        }
+        .testimonial-card {
+            background: linear-gradient(to bottom right, #fff9f5, #fff);
+        }
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+        }
+        .slide-up {
+            transform: translateY(30px);
+        }
+        .slide-up.visible {
+            transform: translateY(0);
+        }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #daa570;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        #social-media-bubbles {
+            z-index: 65; /* S'assure que les boutons sociaux sont au-dessus du menu mobile (z-index 60) */
+        }
+        #back-to-top-btn {
+            /* Ensure it's on a similar layer as social media bubbles, above mobile menu */
+            z-index: 65;
+        }
+
+        /* Full-screen Mobile Menu with Blur and Slide-in */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%; /* Start off-screen */
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 249, 245, 0.85); /* Light beige (bg-beige-50) with transparency */
+            backdrop-filter: blur(10px); /* Effet de flou */
+            -webkit-backdrop-filter: blur(10px); /* Safari support for backdrop-filter */
+            transition: left 0.4s ease-in-out; /* Smooth transition for the left property */
+            z-index: 60; /* High z-index to cover content, above menu button container */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem; /* Add some padding for content */
+            overflow-y: auto; /* Allow scrolling if content overflows on small screens */
+        }
+        #mobile-menu.visible {
+            left: 0; /* Affiche le menu */
+        }
+
+        /* Effet shiny sur le logo */
+        .logo-shiny {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+        .logo-shiny::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+        }
+        @keyframes shiny {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        .promotion-bar {
+            background-color: #daa570;
+            color: white;
+            padding: 10px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            overflow: hidden;
+            white-space: nowrap;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9990;
+        }
+        .promotion-text-wrapper {
+            display: inline-block;
+            width: max-content;
+            min-width: 100vw;
+            animation: scroll-text-kf 40s linear infinite;
+        }
+        .promotion-text-wrapper span {
+            padding-right: 3em;
+        }
+        @keyframes scroll-text-kf {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Partner Logos Carousel */
+        .animate-scroll-logos {
+            animation: scroll-logos-kf 30s linear infinite;
+        }
+        @keyframes scroll-logos-kf {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        #partner-logos .relative:hover .animate-scroll-logos {
+            animation-play-state: paused;
+        }
+        /* Gallery Preview Carousel */
+        .animate-scroll-gallery-preview {
+            animation: scroll-gallery-preview-kf 30s linear infinite; /* Slower scroll for larger images */
+        }
+        @keyframes scroll-gallery-preview-kf {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        /* Utility to hide scrollbar */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Ensure arrows are clickable and have a decent size */
+        #partner-scroll-left, #partner-scroll-right {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            
+        }
+        .gallery-preview-carousel-outer-container:hover .animate-scroll-gallery-preview {
+            animation-play-state: paused;
+        }
+
+        /* Lightbox Modal Styles */
+        .lightbox-modal {
+            background-color: rgba(0, 0, 0, 0.85);
+            transition: opacity 0.3s ease-in-out;
+        }
+        .lightbox-content {
+            max-width: 90vw; /* Max width for content */
+            max-height: 90vh; /* Max height for content */
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: calc(90vh - 50px); /* Adjust based on padding/close button */
+            display: block;
+            margin: auto;
+        }
+        .lightbox-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+        .lightbox-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10000; /* Above image */
+        }
+        .lightbox-prev-btn { left: 10px; }
+        .lightbox-next-btn { right: 10px; }
+        
+     </style>
+</head>
+<body class="bg-white text-gray-700">
+    <!-- Promotion Bar -->
+    <div class="promotion-bar">
+        <div class="promotion-text-wrapper" data-translate="promoOffer">
+            <!-- Add your promotional messages here. Duplicate for seamless scroll -->
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
+        </div>
+    </div>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Mobile Menu (Full Screen Overlay - Moved here) -->
+    <div id="mobile-menu" class="md:hidden"> <!-- md:hidden to hide on medium screens and up via Tailwind -->
+        <button id="close-menu-btn" class="absolute top-10 right-5 text-gray-700 hover:text-beige-600 p-2 z-[61]">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <div class="flex flex-col items-center space-y-6 text-center">
+            <a href="#" data-target="accueil" class="mobile-menu-link text-3xl font-medium text-gray-800 hover:text-beige-600 transition-colors" data-translate="navAccueil">Accueil</a>
+            <a href="#about-content" data-target="accueil" class="mobile-menu-link text-3xl font-medium text-gray-800 hover:text-beige-600 transition-colors" data-translate="navAPropos">À propos</a>
+            <a href="#" data-target="services-page" class="mobile-menu-link text-3xl font-medium text-gray-800 hover:text-beige-600 transition-colors" data-translate="navServices">Services</a>
+            <a href="#" data-target="gallery-page" class="mobile-menu-link text-3xl font-medium text-gray-800 hover:text-beige-600 transition-colors" data-translate="navGalerie">Galerie</a>
+            <a href="#booking-content" class="mobile-menu-link text-3xl font-medium text-gray-800 hover:text-beige-600 transition-colors" data-translate="navContact">Contact</a>
+        </div>
+        <a href="tel:+212669577172" class="mt-12 bg-black text-white hover:bg-gray-700 px-8 py-3 md:px-10 md:py-4 rounded-lg text-lg md:text-xl font-semibold flex items-center justify-center shadow-lg transition-transform hover:scale-105">
+            <i class="fas fa-phone mr-2 md:mr-3"></i>Nabil - +212669577172
+        </a>
+        <a href="tel:+212678915564" class="mt-4 bg-black text-white hover:bg-gray-700 px-8 py-2 md:px-10 md:py-4 rounded-lg text-lg md:text-xl font-semibold flex items-center justify-center shadow-lg transition-transform hover:scale-105">
+            <i class="fas fa-phone mr-2 md:mr-3"></i>Fahd - +212678915564
+        </a>
+        <!-- Mobile Language Selection -->
+        <div class="mt-8 text-center">
+            <p class="text-gray-700 mb-2 text-lg" data-translate="mobileLangLabel">Langue:</p>
+            <div class="flex justify-center space-x-4">
+                <button class="mobile-lang-option text-gray-800 hover:text-beige-600 font-medium" data-lang="fr">
+                    <i class="fas fa-language mr-1"></i> <span data-translate="mobileLangFR">FR</span>
+                </button>
+                <button class="mobile-lang-option text-gray-800 hover:text-beige-600 font-medium" data-lang="en">
+                    <i class="fas fa-language mr-1"></i> <span data-translate="mobileLangEN">EN</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Fixed Top Right Elements (for Mobile Menu Button) -->
+    <div id="fixed-top-right-elements" class="fixed top-[45px] right-4 z-50">
+        <!-- Mobile menu button (moved here) -->
+        <div class="md:hidden">
+            <button class="text-gray-700 bg-white p-2 rounded-md shadow-md focus:outline-none" id="menu-btn">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Fixed Bottom Left Social Media Bubbles -->
+    <div id="social-media-bubbles" class="fixed bottom-4 left-4 flex flex-col space-y-3 items-start">
+        <a href="https://www.instagram.com/onhair_maroc/" target="_blank"
+           class="text-white w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl"
+           style="background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);"
+           aria-label="Instagram">
+            <i class="fab fa-instagram text-xl sm:text-2xl"></i>
+        </a>
+        <a href="https://wa.me/212669577172" target="_blank" class="bg-green-500 hover:bg-green-600 text-white w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp text-xl sm:text-2xl"></i>
+        </a>
+        <a href="https://www.google.com/search?q=ON+h%27AIR+salon" target="_blank"
+           class="bg-white hover:bg-gray-100 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl"
+           aria-label="Google">
+            <!-- SVG Google Logo -->
+            <svg class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                <path d="M1 1h22v22H1z" fill="none"/>
+            </svg>
+        </a>
+    </div>
+    <!-- Logo Display Area -->
+    <div id="logo-section-anchor" class="bg-black pt-10 md:pt-10 pb-10 relative overflow-hidden">
+        <!-- Conteneur pour centrer le logo et le slogan -->
+        <div class="w-full flex flex-col items-center text-center">
+            <div class="relative inline-block">
+                <!-- Logo Principal -->
+                <div class="logo-shiny relative z-10"> <!-- Assurez-vous que logo-shiny a position:relative et z-index pour être au-dessus -->
+                    <a href="index.html"><img src="./images/OH/log-shiny-blanc.png" alt="Éclat Beauté Logo" class="mx-auto w-[500px] md:w-[500px] h-auto fade-in"></a>
+                </div>
+            </div>
+            <!-- Slogan -->
+            <p class="text-white font-serif italic text-3xl md:text-4xl mt-4 fade-in" style="transition-delay: 0.1s;color: #AC9362;" data-translate="slogan">
+                “ VOUS AVANT TOUT ”
+            </p>
+        </div>
+    </div>
+
+    <!-- Navigation (Moved here and modified) -->
+    <nav class="w-full bg-white shadow-md ">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center w-full">
+                <!-- Brand name removed -->
+
+                <!-- Desktop Menu takes the full width available if no mobile button here -->
+                <!-- Desktop Menu -->
+                <div class="hidden md:grid md:grid-cols-5 md:gap-3 flex-auto items-center">
+                    <a href="#" data-target="accueil" class="nav-link text-gray-700 hover:text-beige-600 hover:bg-beige-100 transition block py-2 px-3 text-center border border-beige-300 rounded-sm" data-translate="navAccueil">Accueil</a>
+                    <a href="#about-content" data-target="accueil" class="nav-link text-gray-700 hover:text-beige-600 hover:bg-beige-100 transition block py-2 px-3 text-center border border-beige-300 rounded-sm" data-translate="navAPropos">À propos</a>
+                    <a href="#" data-target="services-page" class="nav-link text-gray-700 hover:text-beige-600 hover:bg-beige-100 transition block py-2 px-3 text-center border border-beige-300 rounded-sm" data-translate="navServices">Services</a>
+                    <a href="#" data-target="gallery-page" class="nav-link text-gray-700 hover:text-beige-600 hover:bg-beige-100 transition block py-2 px-3 text-center border border-beige-300 rounded-sm" data-translate="navGalerie">Galerie</a>
+                    <a href="#booking-content" class="nav-link text-gray-700 hover:text-beige-600 hover:bg-beige-100 transition block py-2 px-3 text-center border border-beige-300 rounded-sm" data-translate="navContact">Contact</a>
+                </div>
+
+                <!-- Conteneur pour les boutons à droite (Appeler et Langue) -->
+                <div class="hidden md:flex md:items-center md:ml-auto">
+                    <!-- Desktop Call Button with Dropdown -->
+                    <div class="relative">
+                        <button id="dropdown-call-btn" class="bg-black text-white hover:bg-gray-700 border-black px-6 py-3 rounded-sm font-medium transition flex items-center focus:outline-none">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span data-translate="navAppeler">Appeler</span>
+                            <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div id="call-dropdown-menu" class="absolute top-full right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden z-50">
+                            <a href="tel:+212669577172" class="block px-4 py-2 text-sm text-gray-700 hover:bg-beige-100 hover:text-beige-600">
+                                Nabil: +212669577172
+                            </a>
+                            <a href="tel:+212678915564" class="block px-4 py-2 text-sm text-gray-700 hover:bg-beige-100 hover:text-beige-600">
+                                Fahd: +212678915564
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Language Switcher Dropdown -->
+                    <div class="relative ml-4">
+                        <button id="dropdown-lang-btn" class="bg-gray-200 text-gray-700 hover:bg-gray-300 px-4 py-3 rounded-sm font-medium transition flex items-center focus:outline-none">
+                            <i class="fas fa-globe mr-2"></i>
+                            <span id="current-lang-text">Français</span>
+                            <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div id="lang-dropdown-menu" class="absolute top-full right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-1 hidden z-50">
+                            <a href="#" class="lang-option block px-4 py-2 text-sm text-gray-700 hover:bg-beige-100 hover:text-beige-600" data-lang="fr">Français</a>
+                            <a href="#" class="lang-option block px-4 py-2 text-sm text-gray-700 hover:bg-beige-100 hover:text-beige-600" data-lang="en">English</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content Wrapper for SPA-like behavior -->
+    <main id="page-content-wrapper">
+
+    <!-- Accueil Page Content (Default Visible) -->
+    <section id="accueil" class="content-section">
+        <!-- About Section Content (Moved into Accueil) -->
+        <section id="about-content" class="py-16 bg-white fade-in">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-translate="aboutTitle">
+                        À Propos de <span class="text-beige-600">Notre salon</span>
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto" data-translate="aboutIntro">
+                        Découvrez notre passion pour la beauté et l'excellence, au cœur d'un espace dédié à votre bien-être.
+                    </p>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                    <div class="md:w-1/2 fade-in">
+                        <img src="./gallerie/im47.jpeg" alt="Intérieur du salon Éclat Beauté" class="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]">
+                    </div>
+                    <div class="md:w-1/2 fade-in" style="transition-delay: 0.1s;">
+                        <h3 class="font-serif text-2xl font-semibold text-gray-700 mb-4" data-translate="aboutCommitmentTitle">Notre Engagement envers Vous</h3>
+                        <p class="text-gray-600 mb-6" data-translate="aboutCommitmentText">
+                            Chez ON h'AIR salon, nous croyons que chaque personne mérite de se sentir belle et en confiance. Notre mission est de vous offrir des services de la plus haute qualité dans un environnement chaleureux et luxueux. Nous utilisons des produits de premier choix et des techniques innovantes pour révéler votre éclat naturel. Assurée par un processus professionnel et minutieux.
+                        </p>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <svg class="w-6 h-6 text-beige-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="text-lg font-medium text-gray-800" data-translate="aboutFeature1Title">Ambiance Luxueuse</h4>
+                                    <p class="text-gray-600" data-translate="aboutFeature1Text">Plongez dans un cadre élégant et apaisant, conçu par nous même pour votre détente absolue.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                     <svg class="w-6 h-6 text-beige-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="text-lg font-medium text-gray-800" data-translate="aboutFeature2Title">Approche Personnalisée</h4>
+                                    <p class="text-gray-600" data-translate="aboutFeature2Text">Chaque soin est adapté à vos besoins spécifiques après un diagnostic , pour des résultats optimaux.</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                     <svg class="w-6 h-6 text-beige-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="text-lg font-medium text-gray-800" data-translate="aboutFeature3Title">Experts Qualifiés</h4>
+                                    <p class="text-gray-600" data-translate="aboutFeature3Text">Notre équipe est composée de professionnels passionnés et hautement qualifiés.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" data-target="services-page" class="inline-block bg-beige-600 hover:bg-beige-700 text-white px-8 py-3 rounded-sm font-medium transition" data-translate="aboutDiscoverServices">
+                            Découvrir nos services
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End of About Section Content -->
+        <!-- Services Preview Section -->
+        <section id="services-preview" class="py-12 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-translate="servicesPreviewTitle">
+                        Nos <span class="text-beige-600">Services</span> en un coup d'œil
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto" data-translate="servicesPreviewIntro">
+                        Découvrez un aperçu de nos soins exclusifs conçus pour votre bien-être.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                     <!-- Service Preview Item 1 -->
+                    <div class="relative group overflow-hidden h-80 md:h-96 fade-in" style="transition-delay: 0.2s;">
+                        <img src="./images/service_preview/coiffure.jpg" alt="Aperçu Manucure & Pedicure" class="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-6 transition-all duration-500 text-center bg-black bg-opacity-60 opacity-100 md:bg-opacity-0 md:opacity-0 md:group-hover:bg-opacity-70 md:group-hover:opacity-100">
+                            <h3 class="font-serif text-2xl font-bold mb-2" data-translate="servicePreviewCoiffureTitle">Coiffure</h3>
+                            <p class="mb-4 text-sm" data-translate="servicePreviewCoiffureText">Misez sur l’élégance, laissez parler votre style.</p>
+                            <a href="#" data-target="services-page" class="inline-block bg-beige-600 hover:bg-beige-700 text-white py-2 px-4 rounded-sm text-sm font-medium transition" data-translate="servicePreviewSeeMore">
+                                Voir plus
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Service Preview Item 2 -->
+                    <div class="relative group overflow-hidden h-80 md:h-96 fade-in" style="transition-delay: 0.3s;">
+                        <img src="./images/service_preview/coloration.jpg" alt="Aperçu Maquillage" class="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-6 transition-all duration-500 text-center bg-black bg-opacity-60 opacity-100 md:bg-opacity-0 md:opacity-0 md:group-hover:bg-opacity-70 md:group-hover:opacity-100">
+                            <h3 class="font-serif text-2xl font-bold mb-2" data-translate="servicePreviewColorationTitle">Coloration</h3>
+                            <p class="mb-4 text-sm" data-translate="servicePreviewColorationText">Des nuances infinies, des résultats éclatants.</p>
+                            <a href="#" data-target="services-page" class="inline-block bg-beige-600 hover:bg-beige-700 text-white py-2 px-4 rounded-sm text-sm font-medium transition" data-translate="servicePreviewSeeMore">
+                                Voir plus
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Service Preview Item 3 -->
+                    <div class="relative group overflow-hidden h-80 md:h-96 fade-in" style="transition-delay: 0.4s;">
+                        <img src="./images/service_preview/esthetique.JPG" alt="Aperçu Soins Capillaires" class="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-6 transition-all duration-500 text-center bg-black bg-opacity-60 opacity-100 md:bg-opacity-0 md:opacity-0 md:group-hover:bg-opacity-70 md:group-hover:opacity-100">
+                            <h3 class="font-serif text-2xl font-bold mb-2" data-translate="servicePreviewEsthetiqueTitle">Esthétique</h3>
+                            <p class="mb-4 text-sm" data-translate="servicePreviewEsthetiqueText">Un moment rien que pour vous, un éclat qui dure.</p>
+                            <a href="#" data-target="services-page" class="inline-block bg-beige-600 hover:bg-beige-700 text-white py-2 px-4 rounded-sm text-sm font-medium transition" data-translate="servicePreviewSeeMore">
+                                Voir plus
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Service Preview Item 4 -->
+                    <div class="relative group overflow-hidden h-80 md:h-96 fade-in" style="transition-delay: 0.1s;">
+                        <img src="./images/service_preview/nailbar.JPG" alt="Aperçu Soin du visage" class="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-6 transition-all duration-500 text-center bg-black bg-opacity-60 opacity-100 md:bg-opacity-0 md:opacity-0 md:group-hover:bg-opacity-70 md:group-hover:opacity-100">
+                            <h3 class="font-serif text-2xl font-bold mb-2" data-translate="servicePreviewNailBarTitle">nail bar</h3>
+                            <p class="mb-4 text-sm" data-translate="servicePreviewNailBarText">Couleurs, formes et brillance à votre image.</p>
+                            <a href="#" data-target="services-page" class="inline-block bg-beige-600 hover:bg-beige-700 text-white py-2 px-4 rounded-sm text-sm font-medium transition" data-translate="servicePreviewSeeMore">
+                                Voir plus
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12 fade-in" style="transition-delay: 0.5s;" >
+                    <a href="#" data-target="services-page" class="border border-beige-600 text-beige-600 hover:bg-beige-50 px-8 py-3 rounded-sm font-medium transition inline-block" data-translate="servicesPreviewExploreAll">
+                        Explorer tous nos services
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Preview Section -->
+        <section id="gallery-preview" class="py-12 bg-beige-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-translate="galleryPreviewTitle">
+                        Un <span class="text-beige-600">aperçu</span> de notre galerie.
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto" data-translate="galleryPreviewIntro">
+                        Plongez dans l'atmosphère ON h'AIR à travers quelques clichés.
+                    </p>
+                </div>
+                <!-- Gallery Preview Carousel -->
+                <div class="gallery-preview-carousel-outer-container overflow-hidden w-full py-4 mb-8 fade-in" style="transition-delay: 0.1s;">
+                    <div class="gallery-preview-carousel-inner-container whitespace-nowrap">
+                        <div class="gallery-preview-set inline-flex animate-scroll-gallery-preview items-stretch"> <!-- items-stretch pour que les images prennent toute la hauteur définie -->
+                            <!-- Images de la galerie - Répétez et ajoutez autant que vous voulez -->
+                            <img src="./gallerie/im59.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im63.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im55.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im49.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im68.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im38.JPG" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im54.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im9.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im27.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <!-- Dupliquer le set pour le défilement infini -->
+                            <img src="./gallerie/im59.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im63.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im55.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im49.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im68.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im38.JPG" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im54.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im9.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im27.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center fade-in" style="transition-delay: 0.5s">
+                    <a href="#" data-target="gallery-page" class="border border-beige-600 text-beige-600 hover:bg-beige-50 px-8 py-3 rounded-sm font-medium transition inline-block" data-translate="galleryPreviewVisitFull">
+                        Visiter notre galerie complète
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visite Virtuelle 360° Section -->
+        <section id="visite-virtuelle" class="py-12 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-translate="virtualTourTitle">
+                        Visite <span class="text-beige-600">Virtuelle 360°</span>
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto" data-translate="virtualTourIntro">
+                        Explorez notre centre de beauté comme si vous y étiez.
+                    </p>
+                </div>
+
+                <!-- Carte pour la Visite Virtuelle 360° -->
+                <div class="max-w-2xl mx-auto bg-beige-50 rounded-xl shadow-xl overflow-hidden fade-in" style="transition-delay: 0.1s;">
+                    <img class="w-full object-cover" src="./images/front/im_front.png" alt="Aperçu de la visite virtuelle 360° d'Éclat Beauté">
+                    <div class="p-8 text-center">
+                        <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-4" data-translate="virtualTourCardTitle">Plongez dans notre univers</h3>
+                        <p class="text-gray-600 mb-6" data-translate="virtualTourCardText">
+                            Cliquez ci-dessous pour une immersion complète et découvrez l'atmosphère unique de notre centre de beauté.
+                        </p>
+                        <a href="https://app.aio360.ma/bien-etre-esthetique-coiffure/soins-beaute-feminine/salon/rabat/onhair/"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="text-dark inline-block bg-beige-600 hover:bg-beige-700 px-8 py-4 rounded-sm font-semibold text-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg" data-translate="virtualTourButton">
+                            <i class="fas fa-vr-cardboard mr-2"></i> Démarrer la visite virtuelle
+                        </a>
+                    </div>
+                </div>
+                <!-- Fin de la Carte pour la Visite Virtuelle 360° -->
+            </div>
+        </section> <!-- End of Visite Virtuelle Section -->
+
+        <!-- Team Presentation Section (Moved Up) -->
+        <section id="team-presentation" class="py-12 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-translate="teamTitle">
+                        Notre <span class="text-beige-600">Équipe</span> d'Experts
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto" data-translate="teamIntro">
+                        Rencontrez les professionnels passionnés qui font la La qualité ON h'AIR.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Team Member Card 1: Nabil -->
+                    <div class="bg-beige-50 rounded-xl shadow-lg p-6 text-center fade-in slide-up hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300" style="transition-delay: 0.1s;">
+                        <img src="./images/NABIL.jpeg" alt="Nabil - Coiffeur Styliste" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-white shadow-md">
+                        <h3 class="font-serif text-2xl font-bold mb-2" data-translate="teamNabilTitle">Nabil</h3>
+                        <p class="text-beige-600 font-medium mb-3" data-translate="teamNabilRole">Coiffeur Styliste</p>
+                        <p class="text-gray-600 text-sm mb-4" data-translate="teamNabilBio">
+                            Artiste dans l’âme, je vois chaque chevelure comme une toile à sublimer. La coloration et la coiffure sont mes moyens d’expression, ma passion, mon art.
+                        </p>
+                        <div class="flex justify-center space-x-3">
+                            <a href="https://www.instagram.com/nabilhaircare/" class="text-gray-500 hover:text-beige-600 transition"><i class="fab fa-instagram fa-lg"></i></a>
+                        </div>
+                    </div>
+                    <!-- Team Member Card 2: Fahd -->
+                    <div class="bg-beige-50 rounded-xl shadow-lg p-6 text-center fade-in slide-up hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300" style="transition-delay: 0.2s;">
+                        <img src="./images/FAHD.jpeg" alt="Fahd - Expert Coloriste" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-white shadow-md">
+                        <h3 class="font-serif text-2xl font-bold mb-2" data-translate="teamFahdTitle">Fahd</h3>
+                        <p class="text-beige-600 font-medium mb-3" data-translate="teamFahdRole">Expert Coifure</p>
+                        <p class="text-gray-600 text-sm mb-4" data-translate="teamFahdBio">
+                            Je m’appelle Fahd, coiffeur, coupeur et coloriste passionné. Avec plus de 27 ans d'expérience, Chaque rendez-vous est pour moi un moment d’échange, de confiance et de création. À travers la coupe ou la couleur, je mets en valeur votre style et votre personnalité, dans une ambiance simple et conviviale..
+                        </p>
+                        <div class="flex justify-center space-x-3">
+                            <a href="https://www.instagram.com/fahd_coiff" class="text-gray-500 hover:text-beige-600 transition"><i class="fab fa-instagram fa-lg"></i></a>
+                        </div>
+                    </div>
+                    <!-- Team Member Card 3: Nezha -->
+                    <div class="bg-beige-50 rounded-xl shadow-lg p-6 text-center fade-in slide-up hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300" style="transition-delay: 0.3s;">
+                        <img src="./images/NEZHA.jpeg" alt="Nezha - Spécialiste Soins Esthétiques" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-white shadow-md">
+                        <h3 class="font-serif text-2xl font-bold mb-2" data-translate="teamNezhaTitle">Nezha</h3>
+                        <p class="text-beige-600 font-medium mb-3" data-translate="teamNezhaRole">Esthéticienne experte</p>
+                        <p class="text-gray-600 text-sm mb-4" data-translate="teamNezhaBio">
+                            Nazha issue d'une formation russe, vous invite à découvrir un univers de soins où raffinement et expertise se rencontrent. Spécialisée en manucure, pédicure, soins du visage et massage, elle sublime votre beauté naturelle tout en vous offrant un moment d’évasion et de sérénité.
+                        </p>
+                        <div class="flex justify-center space-x-3">
+                            <a href="https://www.instagram.com/n_on_nails?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-gray-500 hover:text-beige-600 transition"><i class="fab fa-instagram fa-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- End of Team Presentation Section -->
+
+        <!-- Testimonials Section Content (Moved into Accueil) -->
+        <section id="testimonials-content" class="py-12 bg-beige-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-translate="testimonialsTitle">
+                    Ils nous ont <span class="text-beige-600">fait confiance</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-translate="testimonialsIntro">
+                    Découvrez ce que nos clients disent de leur expérience chez Éclat Beauté
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="p-6 rounded-xl testimonial-card shadow-md fade-in" style="transition-delay: 0.1s">
+                    <div class="flex items-center mb-6">
+                        <img src="./images/la-personne.png" alt="Client" class="w-16 h-16 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">halima Lahbab</h4>
+                            <div class="flex text-beige-600">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic" data-translate="testimonial3Text">
+                        "Je suis venue dans ce salon après une mauvaise expérience ailleurs, et je ne pouvais pas être plus reconnaissante pour le travail incroyable réalisé ici ! Le coiffeur Fahd a pris le temps d’écouter mes attentes et a su non seulement rattraper les dégâts, mais aussi redonner vie et éclat à mes cheveux. Son expertise des techniques modernes et son souci du détail sont vraiment impressionnants. Merci encore pour ce superbe résultat et pour avoir sauvé mes cheveux ! Je recommande vivement ce salon"
+                    </p>
+                    <a href="https://www.google.com/search?sca_esv=a55453b1a2e256c7&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E1HB4y0Zl6BU5ke-hUAp4FYALwIiWpU4DWX-xjJ5LSJUDaNIfB5mghpmCDJijByuAyRs_hCnZxKQkg2zVcMOYMCsl0Zu&q=ON+h%27AIR+salon+Avis&sa=X&ved=2ahUKEwjQweX3hdqNAxW6LvsDHYDQFIAQ0bkNegQINRAD&biw=1440&bih=760&dpr=2" target="_blank" rel="noopener noreferrer" class="border border-black bg-beige-600 hover:bg-beige-700 text-dark px-5 py-1 rounded-sm font-medium transition mt-10 text-sm shadow-sm hover:shadow-md" data-translate="testimonialsGoogleButton">
+                        <i class="fab fa-google mr-2"></i>Voir plus d'avis sur Google
+                    </a>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="p-6 rounded-xl testimonial-card shadow-md fade-in" style="transition-delay: 0.1s">
+                    <div class="flex items-center mb-6">
+                        <img src="./images/la-personne.png" alt="Client" class="w-16 h-16 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Rim EL</h4>
+                            <div class="flex text-beige-600">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic" data-translate="testimonial3Text">
+                        "Je suis trop satisfaite de mon expérience de A à Z. L’accueil était chaleureux et super friendly. J’avais coupé mes cheveux courts moi même à la maison et j’avais fait une catastrophe. Nabil était exceptionnel, il a su me comprendre et me rassurer et pendant tout au long de la prestation la conversation était très agréable rempli d’énergie positive et de bienveillance. Si vous cherchez à vous faire chouchouter et passer un moment relaxant c’est la bonne adresse. La coupe a été au top, c’est la première fois de ma vie je sors d’un salon de coiffure avec un grand sourire et des cheveux magnifiques."
+                    </p>
+                    <a href="https://www.google.com/search?sca_esv=a55453b1a2e256c7&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E1HB4y0Zl6BU5ke-hUAp4FYALwIiWpU4DWX-xjJ5LSJUDaNIfB5mghpmCDJijByuAyRs_hCnZxKQkg2zVcMOYMCsl0Zu&q=ON+h%27AIR+salon+Avis&sa=X&ved=2ahUKEwjQweX3hdqNAxW6LvsDHYDQFIAQ0bkNegQINRAD&biw=1440&bih=760&dpr=2" target="_blank" rel="noopener noreferrer" class="border border-black bg-beige-600 hover:bg-beige-700 text-dark px-5 py-1 rounded-sm font-medium transition mt-4 text-sm shadow-sm hover:shadow-md" data-translate="testimonialsGoogleButton">
+                        <i class="fab fa-google mr-2"></i>Voir plus d'avis sur Google
+                    </a>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="p-6 rounded-xl testimonial-card shadow-md fade-in" style="transition-delay: 0.1s">
+                    <div class="flex items-center mb-6">
+                        <img src="./images/la-personne.png" alt="Client" class="w-16 h-16 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Oumaïma ELKHALDI</h4>
+                            <div class="flex text-beige-600">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic" data-translate="testimonial3Text">
+                        "Deuxième visite chez Fahd, et encore une fois je ressors super contente ! La première fois, j'avais fait un balayage qui était juste magnifique comme je le voulais. Aujourd’hui, c’était pour une coupe, et le résultat est encore une fois parfait. Il est à l’écoute, minutieux et très pro. Je recommande les yeux fermés. Merci encore pour ton travail et ton accueil et ta bonne humeur🙏🏽, toujours au top et sans oublier Nabil et son accueil chaleureux, vraiment équipe très sympathique 🥰 suis impatiente de revenir pour la prochaine étape !"
+                    </p>
+                    <a href="https://www.google.com/search?sca_esv=a55453b1a2e256c7&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E1HB4y0Zl6BU5ke-hUAp4FYALwIiWpU4DWX-xjJ5LSJUDaNIfB5mghpmCDJijByuAyRs_hCnZxKQkg2zVcMOYMCsl0Zu&q=ON+h%27AIR+salon+Avis&sa=X&ved=2ahUKEwjQweX3hdqNAxW6LvsDHYDQFIAQ0bkNegQINRAD&biw=1440&bih=760&dpr=2" target="_blank" rel="noopener noreferrer" class="border border-black bg-beige-600 hover:bg-beige-700 text-dark px-5 py-1 rounded-sm font-medium transition mt-4 text-sm shadow-sm hover:shadow-md" data-translate="testimonialsGoogleButton">
+                        <i class="fab fa-google mr-2"></i>Voir plus d'avis sur Google
+                    </a>
+                </div>
+            </div>
+        </div>
+        </section> <!-- End of Testimonials Section Content -->
+
+        <!-- Partner Logos Section -->
+        <section id="partner-logos" class="py-115 bg-white fade-in">
+            <div class="container mx-auto px-4 sm:px-6 md:px-12">
+                <div class="text-center mb-12">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-translate="partnersTitle">
+                        Nos <span class="text-beige-600">Partenaires</span> de Confiance
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto" data-translate="partnersIntro">
+                        Nous collaborons avec les meilleures marques pour vous garantir des soins d'exception.
+                    </p>
+                </div>
+                <!-- Wrapper for arrows and carousel -->
+                <div class="relative">
+                    <div class="partner-logos-outer-container overflow-x-auto w-full py-4 scrollbar-hide">
+                        <div class="partner-logos-inner-container whitespace-nowrap">
+                            <div class="partner-logo-set inline-flex animate-scroll-logos items-center">
+                                <img src="./images/partenaires/par1.png" alt="Partner Logo 1" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par2.png" alt="Partner Logo 2" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par3.png" alt="Partner Logo 3" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par4.png" alt="Partner Logo 4" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par5.png" alt="Partner Logo 5" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <!-- Duplicate Set -->
+                                <img src="./images/partenaires/par6.png" alt="Partner Logo 6" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par7.png" alt="Partner Logo 7" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par8.png" alt="Partner Logo 8" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par9.png" alt="Partner Logo 9" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par10.png" alt="Partner Logo 10" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par11.png" alt="Partner Logo 11" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par12.png" alt="Partner Logo 12" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par13.png" alt="Partner Logo 13" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par14.png" alt="Partner Logo 14" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par15.png" alt="Partner Logo 15" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par16.png" alt="Partner Logo 16" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par17.png" alt="Partner Logo 17" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par18.png" alt="Partner Logo 18" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par19.png" alt="Partner Logo 19" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par20.png" alt="Partner Logo 20" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par21.png" alt="Partner Logo 21" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <!-- duplicate set -->
+                                 <img src="./images/partenaires/par6.png" alt="Partner Logo 6" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par7.png" alt="Partner Logo 7" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par8.png" alt="Partner Logo 8" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par9.png" alt="Partner Logo 9" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par10.png" alt="Partner Logo 10" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par11.png" alt="Partner Logo 11" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par12.png" alt="Partner Logo 12" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par13.png" alt="Partner Logo 13" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par14.png" alt="Partner Logo 14" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par15.png" alt="Partner Logo 15" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par16.png" alt="Partner Logo 16" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par17.png" alt="Partner Logo 17" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par18.png" alt="Partner Logo 18" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par19.png" alt="Partner Logo 19" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par20.png" alt="Partner Logo 20" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par21.png" alt="Partner Logo 21" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Arrow Buttons -->
+                    <button id="partner-scroll-left" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 focus:outline-none z-10">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="partner-scroll-right" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 focus:outline-none z-10">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- End of Partner Logos Section -->
+
+    </section> <!-- End of Accueil Page Content -->
+
+    <!-- Contact Details Section (Moved out of SPA, always visible before footer) -->
+    <section id="booking-content" class="py-12 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="bg-beige-50 rounded-xl shadow-lg overflow-hidden fade-in">
+                <div class="grid md:grid-cols-3">
+                    <div class="md:col-span-1 bg-beige-600 p-6 text-dark">
+                        <h2 class="font-serif text-3xl font-bold mb-6" data-translate="contactUsTitle">Contactez-Nous</h2>
+                        <p class="mb-8" data-translate="contactUsIntro">
+                            Contactez-nous pour toute question ou pour planifier votre prochaine visite. Notre équipe est à votre écoute.
+                        </p>
+                        <div class="mb-6">
+                            <h3 class="font-bold text-lg mb-2" data-translate="contactOpeningHoursTitle">Horaires d'ouverture</h3>
+                            <p class="mb-1" data-translate="contactOpeningHoursDays">Mardi - Dimanche: 11h - 20h</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2" data-translate="contactQuickContactTitle">Contact rapide</h3>
+                            <div class="flex items-center mb-3">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                                <span>+212669577172</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-1 h-80 md:h-auto md:min-h-[400px]">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.7013398396475!2d-6.847190299999999!3d34.0002043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda76de7079a3413%3A0xdc150b08de691131!2sON%20h&#39;AIR%20salon!5e0!3m2!1sfr!2sma!4v1749216268028!5m2!1sfr!2sma" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="md:col-span-1 p-8 bg-white">
+                        <div class="mb-8">
+                            <h3 class="font-serif text-xl font-bold text-gray-800 mb-4" data-translate="contactCoordinatesTitle">Nos Coordonnées</h3>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-map-marker-alt text-beige-600 mr-3 mt-1 w-5 text-center"></i>
+                                    <span>place Rabea Aladaouya, 100 résidence Kays, Rabat 10100</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-phone text-beige-600 mr-3 w-5 text-center"></i>
+                                    <a href="tel:+212612345678" class="hover:text-beige-600 transition">Nabil : +212669577172</a>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-phone text-beige-600 mr-3 w-5 text-center"></i>
+                                    <a href="tel:+212612345678" class="hover:text-beige-600 transition">Fahd : +212678915564</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-gray-800 mb-4" data-translate="contactFollowUsTitle">Suivez-Nous</h3>
+                            <div class="flex space-x-4">
+                                <a href="https://www.instagram.com/onhair_maroc/following/" target="_blank" class="bg-gray-200 hover:bg-beige-600 text-gray-700 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300" aria-label="Instagram">
+                                    <i class="fab fa-instagram text-xl"></i></a>
+                                <a href="https://wa.me/212612345678" target="_blank" class="bg-gray-200 hover:bg-beige-600 text-gray-700 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-300" aria-label="WhatsApp">
+                                    <i class="fab fa-whatsapp text-xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> <!-- End of Contact Details Section -->
+
+    <!-- Dedicated Services Page (Initially Hidden) -->
+    <section id="services-page" class="content-section hidden py-12 bg-beige-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-translate="servicesPageTitle">
+                    Nos <span class="text-beige-600">services</span> exclusifs
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-translate="servicesPageIntro">
+                    Découvrez notre gamme complète de soins et traitements haut de gamme conçus pour sublimer votre beauté
+                </p>
+            </div>
+            <!-- Search Bar -->
+            <div class="mb-10 fade-in">
+                <input type="text" id="service-search-input" placeholder="Rechercher un service..." data-translate-placeholder="servicesSearchPlaceholder"
+                       class="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-beige-500 focus:border-beige-500 text-lg">
+            </div>
+
+            <!-- Services List Container (injected from services.md) -->
+            <div id="services-list-container">
+                <!-- ÉPILATION -->
+                <div class="service-category mb-10">
+                    <h3 class="font-serif text-2xl font-bold text-beige-600 mb-4" data-translate="serviceCategoryWaxing">ÉPILATION</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceUpperLipWaxTitle">Duvet</h4><span class="font-bold text-beige-600 text-lg">20 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceEyebrowWaxTitle">Sourcil</h4><span class="font-bold text-beige-600 text-lg">30 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceChinWaxTitle">Menton</h4><span class="font-bold text-beige-600 text-lg">15 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceFullFaceWaxTitle">Visage Complet</h4><span class="font-bold text-beige-600 text-lg">80 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceArmsWaxTitle">Bras</h4><span class="font-bold text-beige-600 text-lg">50 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceHalfLegsWaxTitle">Demis jambe</h4><span class="font-bold text-beige-600 text-lg">50 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceFullLegsWaxTitle">Jambe complète</h4><span class="font-bold text-beige-600 text-lg">100 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceUnderarmsWaxTitle">Aisselles</h4><span class="font-bold text-beige-600 text-lg">30 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceBikiniWaxTitle">Maillot</h4><span class="font-bold text-beige-600 text-lg">70 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceFullBodyWaxTitle">Épilation complète</h4><span class="font-bold text-beige-600 text-lg">280 dh</span></div>
+                    </div>
+                </div>
+                <!-- MASSAGE -->
+                <div class="service-category mb-10">
+                    <h3 class="font-serif text-2xl font-bold text-beige-600 mb-4" data-translate="serviceCategoryMassages">MASSAGE</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceRelaxingMassage30Title">Massage Relaxant 30min</h4><span class="font-bold text-beige-600 text-lg">200 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceRelaxingMassage45Title">Massage Relaxant 45min</h4><span class="font-bold text-beige-600 text-lg">250 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceRelaxingMassage60Title">Massage Relaxant 60min</h4><span class="font-bold text-beige-600 text-lg">300 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceNeckShoulderMassage15Title">Massage Nuque et épaules 15min</h4><span class="font-bold text-beige-600 text-lg">100 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceScalpFacialMassage15Title">Massage cranien et faciale 15min</h4><span class="font-bold text-beige-600 text-lg">100 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceFootMassage15Title">Massage des pieds 15min</h4><span class="font-bold text-beige-600 text-lg">100 dh</span></div>
+                    </div>
+                </div>
+                <!-- YEUX -->
+                <div class="service-category mb-10">
+                    <h3 class="font-serif text-2xl font-bold text-beige-600 mb-4" data-translate="serviceCategoryEyes">YEUX</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceFalseEyelashesTitle">Faux cils</h4><span class="font-bold text-beige-600 text-lg">80 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceEyebrowColoringTitle">Coloration des sourcils</h4><span class="font-bold text-beige-600 text-lg">40 dh</span></div>
+                    </div>
+                </div>
+                <!-- MAQUILLAGE -->
+                <div class="service-category mb-10">
+                    <h3 class="font-serif text-2xl font-bold text-beige-600 mb-4" data-translate="serviceCategoryMakeup">MAQUILLAGE</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceEveningMakeupTitle">Maquillage soirée</h4><span class="font-bold text-beige-600 text-lg">300 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceEngagementMakeupTitle">Maquillage Fiançailles</h4><span class="font-bold text-beige-600 text-lg">1000 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceBridalMakeupTitle">Maquillage de la mariée</h4><span class="font-bold text-beige-600 text-lg">1500 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceBridalPackageTitle">Pack de la mariée</h4><span class="font-bold text-beige-600 text-lg">4000 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceBridalPackageWithSupportTitle">Pack de la mariée avec accompagnement</h4><span class="font-bold text-beige-600 text-lg">6000 dh</span></div>
+                    </div>
+                </div>
+                <!-- COIFFURE -->
+                <div class="service-category mb-10">
+                    <h3 class="font-serif text-2xl font-bold text-beige-600 mb-4" data-translate="serviceCategoryCoiffure">COIFFURE</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceBrushingTitle">Brushing</h4><span class="font-bold text-beige-600 text-lg">50 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceShampooMaskBrushingTitle">SHP+ Masque+ Brushing</h4><span class="font-bold text-beige-600 text-lg">70 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceSpecificShampooMaskBrushingTitle">SHP spécifique+Masque traitant+ Brush</h4><span class="font-bold text-beige-600 text-lg">100 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceWavyTitle">Wavy</h4><span class="font-bold text-beige-600 text-lg">100 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceWavyTitle">Wavy + SHP+ Masque</h4><span class="font-bold text-beige-600 text-lg">120 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceCutTitle">Coupe correction et pointes</h4><span class="font-bold text-beige-600 text-lg">140 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceTransformationCutTitle">Coupe transformation</h4><span class="font-bold text-beige-600 text-lg">+250 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2">Coup enfant</h4><span class="font-bold text-beige-600 text-lg">100 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceConsultationDiagnosisTitle">Consultation et diagnostique</h4><span class="font-bold text-beige-600 text-lg">200 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceDiagnosisStrandTestTitle">Diagnostique et mèche test*</h4><span class="font-bold text-beige-600 text-lg">300 dh</span></div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2 ml-2">*à déduire de toutes prestations techniques + à partir de</p>
+                </div>
+                <!-- COLORATION -->
+                <div class="service-category mb-10">
+                    <h3 class="font-serif text-2xl font-bold text-beige-600 mb-4" data-translate="serviceCategoryColoration">COLORATION</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceColoringTitle">Coloration</h4><span class="font-bold text-beige-600 text-lg">350 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceAmmoniaFreeColoringTitle">Coloration sans ammoniaque</h4><span class="font-bold text-beige-600 text-lg">400 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceRootColoringTitle">Coloration racines</h4><span class="font-bold text-beige-600 text-lg">250 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceAmmoniaFreeRootColoringTitle">Coloration racines sans ammoniaque</h4><span class="font-bold text-beige-600 text-lg">300 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceRinseColorCorrectionTitle">Rinçage et correction de couleur</h4><span class="font-bold text-beige-600 text-lg">300 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceHighlightsTitle">Reflets Highlight</h4><span class="font-bold text-beige-600 text-lg">+750 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceOmbreTitle">Ombré</h4><span class="font-bold text-beige-600 text-lg">+1200 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceBalayageTitle">Balayage</h4><span class="font-bold text-beige-600 text-lg">+1000 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceAirtouchTitle">Airtouch</h4><span class="font-bold text-beige-600 text-lg">+1500 dh</span></div>
+                    </div>
+                </div>
+                <!-- SOINS DE CHEVEUX -->
+                <div class="service-category mb-10">
+                    <h3 class="font-serif text-2xl font-bold text-beige-600 mb-4" data-translate="serviceCategoryHairCare">SOINS DE CHEVEUX</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceOnHairCareTitle">Soin ON h’AIR</h4><span class="font-bold text-beige-600 text-lg">250 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="servicePlexCareTitle">Soin a base de PLEX</h4><span class="font-bold text-beige-600 text-lg">350 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceCollagenCareTitle">Soin COLLAGENE</h4><span class="font-bold text-beige-600 text-lg">+700 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceProteinCareTitle">Soin PROTEINE</h4><span class="font-bold text-beige-600 text-lg">+1000 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceTherapyCareTitle">Soin BRUSHING permanent</h4><span class="font-bold text-beige-600 text-lg">750 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceSemiPermanentCurlyCareTitle">Soin semi permanent CURLY hair</h4><span class="font-bold text-beige-600 text-lg">300 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="servicePermanentCurlyCareTitle">Soin permanent CURLY hair</h4><span class="font-bold text-beige-600 text-lg">800 dh</span></div>
+                    </div>
+                </div>
+                <!-- MANUCURE -->
+                <div class="service-category mb-10">
+                    <h3 class="font-serif text-2xl font-bold text-beige-600 mb-4" data-translate="serviceCategoryNails">MANUCURE</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceNormalPolishTitle">Pose vernis normal</h4><span class="font-bold text-beige-600 text-lg">30 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="servicePermanentPolishTitle">Pose vernis permanent</h4><span class="font-bold text-beige-600 text-lg">100 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceClassicManicureTitle">Manucure classique</h4><span class="font-bold text-beige-600 text-lg">80 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceSpaManicureTitle">Manucure SPA</h4><span class="font-bold text-beige-600 text-lg">150 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceBiabManicureTitle">Manucure BIAB</h4><span class="font-bold text-beige-600 text-lg">280 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceGelExtensionTitle">Extension de gel (chablon / faux ongle)</h4><span class="font-bold text-beige-600 text-lg">380 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceGelRefillTitle">Remplissage de gel</h4><span class="font-bold text-beige-600 text-lg">180 dh</span></div>
+                    </div>
+                </div>
+                <!-- PEDICURE -->
+                <div class="service-category mb-10">
+                    <h3 class="font-serif text-2xl font-bold text-beige-600 mb-4" data-translate="serviceCategoryNails">PEDICURE</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceNormalPolishTitle">Pose vernis normal</h4><span class="font-bold text-beige-600 text-lg">30 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="servicePermanentPolishTitle">Pose vernis permanent</h4><span class="font-bold text-beige-600 text-lg">100 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceClassicPedicureTitle">Pédicure classique</h4><span class="font-bold text-beige-600 text-lg">100 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceSpaPedicureTitle">Pédicure SPA</h4><span class="font-bold text-beige-600 text-lg">200 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceBiabPedicureTitle">Pédicure BIAB</h4><span class="font-bold text-beige-600 text-lg">250 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceGelExtensionTitle">Extention de Gel</h4><span class="font-bold text-beige-600 text-lg">400 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceGelRefillTitle">Remplissage de Gel</h4><span class="font-bold text-beige-600 text-lg">300 dh</span></div>
+                    </div>
+                </div>
+                <!-- EXTRA ONGLES -->
+                <div class="service-category mb-10">
+                    <h3 class="font-serif text-2xl font-bold text-beige-600 mb-4" data-translate="serviceCategoryNailExtras">EXTRA ONGLES</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceNailArtTitle">Nail Art</h4><span class="font-bold text-beige-600 text-lg">50 / 100 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceFrenchTitle">French</h4><span class="font-bold text-beige-600 text-lg">70 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceBabyBoomerTitle">Babyboomer</h4><span class="font-bold text-beige-600 text-lg">100 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceFalseNailsPermanentPolishTitle">Faux Ongles avec permanent</h4><span class="font-bold text-beige-600 text-lg">200 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceChromeNailsTitle">Chrome</h4><span class="font-bold text-beige-600 text-lg">50 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceNormalPolishRemovalTitle">Dépose vernis normal</h4><span class="font-bold text-beige-600 text-lg">20dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="servicePermanentPolishRemovalTitle">Dépose vernis permanent</h4><span class="font-bold text-beige-600 text-lg">50dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceGelRemovalTitle">Dépose gel</h4><span class="font-bold text-beige-600 text-lg">100 dh</span></div>
+                    </div>
+                </div>
+                <!-- SOIN DE VISAGE -->
+                <div class="service-category mb-10">
+                    <h3 class="font-serif text-2xl font-bold text-beige-600 mb-4" data-translate="serviceCategoryFacials">SOIN DE VISAGE</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="servicePurifyingFacialTitle">Soin purifiant</h4><span class="font-bold text-beige-600 text-lg">300 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceRadianceFacialTitle">Soin éclat</h4><span class="font-bold text-beige-600 text-lg">500 dh</span></div>
+                        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between service-card"><h4 class="font-semibold mb-2" data-translate="serviceHydratingFacialTitle">Soin hydratant</h4><span class="font-bold text-beige-600 text-lg">500 dh</span></div>
+                    </div>
+                </div>
+            </div>
+            <!-- No services found message (hidden by default) -->
+            <div id="no-services-found" class="text-center py-10 text-gray-500 text-xl hidden">
+                    <i class="fas fa-concierge-bell fa-2x mb-4 text-beige-400"></i>
+                    <p data-translate="servicesNoResults">Aucun service ne correspond à votre recherche.</p>
+                    <p class="text-sm mt-2" data-translate="servicesNoResultsHint">Essayez un autre terme ou <a href="#" id="clear-search-link" class="text-beige-600 hover:underline">affichez tous les services</a>.</p>
+                </div>
+        </div>
+    </section>
+
+    <!-- Dedicated Gallery Page (Initially Hidden) -->
+    <section id="gallery-page" class="content-section hidden py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-translate="galleryPageTitle"> 
+                    Notre <span class="text-beige-600">galerie</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-translate="galleryPageIntro">
+                    Découvrez l'ambiance et les réalisations de notre institut à travers ces instants capturés
+                </p>
+            </div>
+            <!-- Image Section Title -->
+            <div class="text-center mb-10 fade-in" style="transition-delay: 0.6s;">
+                <h3 class="font-serif text-2xl md:text-3xl font-semibold text-gray-700 border-b-2 border-beige-300 pb-3" data-translate="galleryPageSnapshotsTitle">
+                    Instantanés <span class="text-beige-600">de l'Institut</span>
+                </h3>
+            </div>
+
+            <!-- Image Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im58.jpg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im58.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im59.jpg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im59.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im60.jpg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im60.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im61.jpg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im61.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im62.jpg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im62.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im63.jpg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im63.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im65.jpg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im65.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im66.jpg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im66.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im67.jpg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im67.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im68.jpg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im68.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <!-- Image 1 -->
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
+                     data-src="./gallerie/im54.jpg" style="transition-delay: 0.1s;">
+                    <img src="./gallerie/im54.jpg" alt="Galerie Image Salon 1" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <!-- Image 2 -->
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
+                     data-src="./gallerie/im55.jpg" style="transition-delay: 0.15s;">
+                    <img src="./gallerie/im55.jpg" alt="Galerie Image Salon 2" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <!-- Image 3 -->
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
+                     data-src="./gallerie/im2.jpeg" style="transition-delay: 0.2s;">
+                    <img src="./gallerie/im2.jpeg" alt="Galerie Image Coiffure" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <!-- Image 4 -->
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
+                     data-src="./gallerie/im6.jpeg" style="transition-delay: 0.25s;">
+                    <img src="./gallerie/im6.jpeg" alt="Galerie Image Soin" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <!-- Image 5 -->
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
+                     data-src="./gallerie/im7.jpeg" style="transition-delay: 0.3s;">
+                    <img src="./gallerie/im7.jpeg" alt="Galerie Image Détail" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <!-- Image 6 -->
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
+                     data-src="./gallerie/im9.jpeg" style="transition-delay: 0.35s;">
+                    <img src="./gallerie/im9.jpeg" alt="Galerie Image Ambiance" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <!-- Image 8 -->
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
+                     data-src="./gallerie/im12.JPG" style="transition-delay: 0.45s;">
+                    <img src="./gallerie/im12.JPG" alt="Galerie Image Manucure" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <!-- Image 9 -->
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
+                     data-src="./gallerie/im14.JPG" style="transition-delay: 0.5s;">
+                    <img src="./gallerie/im14.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <!-- Image 10 -->
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
+                     data-src="./gallerie/im16.jpeg" style="transition-delay: 0.55s;">
+                    <img src="./gallerie/im16.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <!-- Image 11 -->
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
+                     data-src="./gallerie/im17.jpeg" style="transition-delay: 0.6s;">
+                    <img src="./gallerie/im17.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <!-- Continuez ce modèle pour toutes vos images -->
+                <!-- Exemple pour im19.JPG -->
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
+                     data-src="./gallerie/im19.JPG" style="transition-delay: 0.7s;">
+                    <img src="./gallerie/im19.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im21.jpeg" style="transition-delay: 0.8s;">
+                    <img src="./gallerie/im21.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im23.jpeg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im23.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im25.JPG" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im25.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im26.jpeg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im26.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im27.jpeg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im27.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im28.JPG" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im28.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im29.jpeg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im29.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im31.JPG" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im31.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im32.JPG" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im32.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im33.jpeg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im33.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im35.jpeg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im35.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im36.jpeg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im36.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im38.JPG" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im38.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im40.JPG" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im40.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im42.JPG" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im42.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im43.JPG" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im43.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im44.jpeg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im44.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im45.JPG" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im45.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im48.JPG" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im48.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im49.jpeg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im49.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im50.JPG" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im50.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im51.jpeg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im51.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im53.jpeg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im53.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im55.jpg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im55.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im56.png" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im56.png" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
+                     data-src="./gallerie/im69.jpg" style="transition-delay: 0.85s;">
+                    <img src="./gallerie/im69.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+            </div>
+
+            <div class="text-center mt-12 fade-in" style="transition-delay: 0.9s">
+                <a href="https://www.instagram.com/onhair_maroc/" target="_blank" class="bg-beige-600 hover:bg-beige-700 text-white px-8 py-3 rounded-sm font-medium transition inline-block" data-translate="galleryPageInstagramButton">
+                    Voir plus sur Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    </main> <!-- End of #page-content-wrapper -->
+
+    <!-- Lightbox Modal for Images -->
+    <div id="image-lightbox-modal" class="lightbox-modal fixed inset-0 flex items-center justify-center z-[9995] hidden p-4">
+        <div class="lightbox-content bg-white p-1 rounded-lg shadow-xl relative">
+            <button id="image-lightbox-close-btn" class="lightbox-close-btn text-white hover:text-gray-300 transition-colors duration-200">&times;</button>
+            <button id="lightbox-prev-btn" class="lightbox-nav-btn lightbox-prev-btn">&lt;</button>
+            <button id="lightbox-next-btn" class="lightbox-nav-btn lightbox-next-btn">&gt;</button>
+            <img id="lightbox-image-content" src="" alt="Image agrandie" class="">
+        </div>
+    </div>
+
+
+    <!-- CTA Section -->
+    <section class="py-10 bg-beige-600 text-dark text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6 fade-in" data-translate="ctaTitle">
+                Prête à révéler votre beauté intérieure?
+            </h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto fade-in" style="transition-delay: 0.1s" data-translate="ctaIntro">
+                Contactez-nous pour votre première séance et bénéficiez de 15% de réduction sur votre premier soin.
+            </p>
+            <div class="fade-in" style="transition-delay: 0.2s">
+                <a href="tel:+212669577172" class="bg-black text-white hover:bg-gray-700 px-8 py-3 rounded-sm font-medium text-lg transition inline-block" data-translate="ctaButton">
+                    <i class="fas fa-phone mr-2"></i>Nous appeler
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer id="contact" class="bg-black text-white pt-10 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between mb-12">
+                <div class="mb-8 md:mb-0 md:w-1/4">
+                    <a href="#" class="text-2xl font-serif font-bold text-white mb-4 inline-block">
+                        <span class="text-white">ON h'AIR salon</span>
+                    </a>
+                    <p class="text-white mb-4" data-translate="footerSlogan">
+                        Votre institut de beauté haut de gamme à Rabat, où l'expertise rencontre le luxe pour sublimer votre beauté naturelle.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/onhair_maroc/" target="_blank" class="text-gray-600 hover:text-white transition">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://wa.me/212678915564" class="text-gray-600 hover:text-white transition">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mb-8 md:mb-0">
+                    <h3 class="font-serif text-lg font-bold text-white mb-4" data-translate="footerQuickLinks">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" data-target="accueil" class="text-white hover:text-white transition" data-translate="navAccueil">Accueil</a></li>
+                        <li><a href="#about-content" class="text-white hover:text-white transition" data-translate="navAPropos">À propos</a></li>
+                        <li><a href="#" data-target="services-page" class="text-white hover:text-white transition" data-translate="navServices">Services</a></li>
+                        <li><a href="#" data-target="gallery-page" class="text-white hover:text-white transition" data-translate="navGalerie">Galerie</a></li>
+                        <li><a href="#booking-content" class="text-white hover:text-white transition" data-translate="navContact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="mb-8 md:mb-0">
+                    <h3 class="font-serif text-lg font-bold text-white mb-4" data-translate="footerServices">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" data-target="services-page" class="text-white transition" data-translate="footerServiceSoinsVisage">Soins du visage</a></li>
+                        <li><a href="#" data-target="services-page" class="text-white transition" data-translate="footerServiceManucurePedicure">Manucure & Pedicure</a></li>
+                        <li><a href="#" data-target="services-page" class="text-white transition" data-translate="footerServiceMaquillage">Maquillage</a></li>
+                        <li><a href="#" data-target="services-page" class="text-white transition" data-translate="footerServiceExtrasOngles">Extras Ongles</a></li>
+                        <li><a href="#" data-target="services-page" class="text-white transition" data-translate="footerServiceMassage">massage</a></li>
+                        <li><a href="#" data-target="services-page" class="text-white transition" data-translate="footerServiceCoiffure">Coiffure</a></li>
+                        <li><a href="#" data-target="services-page" class="text-white transition" data-translate="footerServiceColoration">coloration</a></li>
+                        <li><a href="#" data-target="services-page" class="text-white transition" data-translate="footerServiceMassage">massage</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-serif text-lg font-bold text-white mb-4" data-translate="footerContact">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="w-5 h-5 text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="text-white">place Rabea Aladaouya, 100 résidence Kays, Rabat 10100</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span class="text-white">+212669577172</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white text-center text-white text-sm">
+                <p data-translate="footerRights">&copy; 2025 ON h'air. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Social Buttons (Bottom Left) - Removed as they are moved to top right -->
+
+    <!-- Back to Top Button (Replaces WhatsApp Bubble) -->
+    <button id="back-to-top-btn" class="hidden fixed bottom-6 right-6 bg-red-500 hover:bg-red-600 text-white w-14 h-14 rounded-full items-center justify-center shadow-lg transition" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <script src="translate.js" defer></script>
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.querySelector('.preloader');
+            setTimeout(() => {
+                preloader.classList.add('fade-out');
+            }, 1000);
+
+            // Scroll to logo section on page load
+            const logoSection = document.getElementById('logo-section-anchor');
+            if (logoSection) {
+                // Scroll immediately to the top of the logo section.
+                logoSection.scrollIntoView({ block: 'start', behavior: 'auto' });
+            }
+        });
+                // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a.mobile-menu-link');
+        const searchInput = document.getElementById('service-search-input');
+        const servicesListContainer = document.getElementById('services-list-container');
+        const noServicesFoundMessage = document.getElementById('no-services-found');
+        const clearSearchLink = document.getElementById('clear-search-link');
+
+        if (menuBtn && mobileMenu && closeMenuBtn) {
+            menuBtn.addEventListener('click', function() {
+                mobileMenu.classList.add('visible');
+                document.body.style.overflow = 'hidden'; // Prevent body scroll when menu is open
+            });
+
+            closeMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.remove('visible');
+                document.body.style.overflow = ''; // Restore body scroll
+            });
+
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('visible');
+                    document.body.style.overflow = '';
+                    // SPA navigation or smooth scroll will be handled by existing listeners
+                });
+            });
+        }
+
+        // Desktop Call Button Dropdown Toggle
+        const dropdownCallBtn = document.getElementById('dropdown-call-btn');
+        const callDropdownMenu = document.getElementById('call-dropdown-menu');
+
+        if (dropdownCallBtn && callDropdownMenu) {
+            dropdownCallBtn.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent the document click listener from closing it immediately
+                callDropdownMenu.classList.toggle('hidden');
+            });
+
+            // Close the dropdown if the user clicks outside of it
+            document.addEventListener('click', function(event) {
+                if (!dropdownCallBtn.contains(event.target) && !callDropdownMenu.contains(event.target)) {
+                    callDropdownMenu.classList.add('hidden');
+                }
+            });
+        }
+
+        
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in, .slide-up');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // SPA-like navigation & Smooth Scrolling
+        const contentSections = document.querySelectorAll('.content-section');
+        const spaNavLinks = document.querySelectorAll('a[data-target]');
+        const mainNavbar = document.querySelector('nav');
+        const contactDetailsSection = document.getElementById('booking-content');
+        const pageFooter = document.querySelector('footer#contact');
+
+        // Ajoute ce bloc pour que le bouton "À propos" SPA affiche la section accueil comme "Accueil"
+        document.querySelectorAll('a[href="#about-content"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                showContentSection('accueil'); // Affiche la section accueil
+                setTimeout(() => {
+                    const aboutSection = document.getElementById('about-content');
+                    if (aboutSection) {
+                        window.scrollTo({
+                            top: aboutSection.offsetTop - (mainNavbar ? mainNavbar.offsetHeight : 0) - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 100);
+                if (mobileMenu.classList.contains('visible')) {
+                    mobileMenu.classList.remove('visible');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        function showContentSection(targetId) {
+            let sectionFound = false;
+            contentSections.forEach(section => {
+                if (section.id === targetId) {
+                    section.classList.remove('hidden');
+                    sectionFound = true;
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+
+            // Ensure contact section is always before the footer
+            if (contactDetailsSection && pageFooter) {
+                pageFooter.before(contactDetailsSection);
+            }
+
+            if (sectionFound && mainNavbar) {
+                // Scroll to the top of the navbar or slightly below it
+                window.scrollTo({
+                    top: mainNavbar.offsetTop - 20, // 20px buffer above the navbar
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        spaNavLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.dataset.target;
+                showContentSection(targetId);
+
+                // Close mobile menu if it's open (it should be closed by link click handler already)
+                if (mobileMenu.classList.contains('visible')) {
+                    mobileMenu.classList.remove('visible');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Initial section to show
+        showContentSection('accueil');
+
+        // Services Page Search Functionality
+        function filterServices() {
+            if (!searchInput || !servicesListContainer || !noServicesFoundMessage) {
+                console.error("Search feature essential elements (searchInput, servicesListContainer, or noServicesFoundMessage) are missing from the DOM.");
+                return;
+            }
+
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const categories = servicesListContainer.querySelectorAll('.service-category');
+            let anyServiceVisibleOverall = false;
+
+            categories.forEach(category => {
+                const serviceItems = category.querySelectorAll('.service-card, .service-item');
+                let categoryHasVisibleService = false;
+
+                serviceItems.forEach(item => {
+                    const itemNameElement = item.querySelector('h4');
+                    const itemDescriptionElement = item.querySelector('p.text-gray-600.text-sm.mb-2');
+
+                    const itemName = itemNameElement ? itemNameElement.textContent.toLowerCase() : '';
+                    const itemDescription = itemDescriptionElement ? itemDescriptionElement.textContent.toLowerCase() : '';
+
+                    let isMatch = false;
+                    if (searchTerm === "") {
+                        isMatch = true; // Always show all if search is empty
+                    } else {
+                        const keywords = searchTerm.split(' ').filter(k => k.length > 0);
+                        if (keywords.length === 0) {
+                            isMatch = true;
+                        } else {
+                            for (const keyword of keywords) {
+                                if (itemName.includes(keyword) || itemDescription.includes(keyword)) {
+                                    isMatch = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    if (isMatch) {
+                        item.style.display = '';
+                        categoryHasVisibleService = true;
+                        anyServiceVisibleOverall = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Always show the category if search is empty, otherwise hide if no visible service
+                if (category instanceof HTMLElement) {
+                    category.style.display = (searchTerm === "" || categoryHasVisibleService) ? '' : 'none';
+                }
+            });
+
+            // Show "no results" message only if there's a search term and no results
+            if (noServicesFoundMessage instanceof HTMLElement) {
+                noServicesFoundMessage.classList.toggle('hidden', anyServiceVisibleOverall || searchTerm === "");
+            }
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener('input', filterServices);
+        }
+
+        if (clearSearchLink) {
+            clearSearchLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (searchInput) {
+                    searchInput.value = '';
+                }
+                filterServices(); // Refresh the list
+            });
+        }
+
+
+       
+
+
+        const showAllServicesButtonOnServicesPage = document.getElementById('show-all-services-button');
+        if (showAllServicesButtonOnServicesPage && searchInput) {
+            showAllServicesButtonOnServicesPage.addEventListener('click', function() {
+                if (searchInput) {
+                    searchInput.value = '';
+                }
+                filterServices(); // Refresh the list; SPA navigation is handled by data-target
+            });
+        }
+
+        // Smooth scrolling for true anchor links (not SPA triggers)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            if (!anchor.hasAttribute('data-target')) { // Only for non-SPA links
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    // Check if the target is within the currently active 'accueil' section
+                    const accueilSection = document.getElementById('accueil');
+                    if (targetElement && accueilSection && !accueilSection.classList.contains('hidden') && accueilSection.contains(targetElement)) {
+                        window.scrollTo({ top: targetElement.offsetTop - mainNavbar.offsetHeight - 20, behavior: 'smooth' }); // Adjusted offset for internal links
+                    } else if (targetElement) { // For other anchor links like #booking-content or #contact (footer)
+                        window.scrollTo({ top: targetElement.offsetTop - mainNavbar.offsetHeight - 20 , behavior: 'smooth' }); // Adjusted for nav height
+                    }
+
+                    if (mobileMenu.classList.contains('visible')) {
+                        mobileMenu.classList.remove('visible');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top-btn');
+
+        if (backToTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 200) { // Show button after scrolling 200px
+                    backToTopButton.classList.remove('hidden');
+                    backToTopButton.classList.add('flex'); // Using flex for items-center justify-center
+                } else {
+                    backToTopButton.classList.add('hidden');
+                    backToTopButton.classList.remove('flex');
+                }
+            });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+         // Partner Logos Carousel Arrows
+        const partnerLogosOuterContainer = document.querySelector('.partner-logos-outer-container');
+        const partnerScrollLeftBtn = document.getElementById('partner-scroll-left');
+        const partnerScrollRightBtn = document.getElementById('partner-scroll-right');
+
+        if (partnerLogosOuterContainer && partnerScrollLeftBtn && partnerScrollRightBtn) {
+            const scrollAmount = 250; // Pixels to scroll, adjust as needed
+
+            function updatePartnerArrowVisibility() {
+                if (!partnerLogosOuterContainer) return;
+                const tolerance = 2; // Small tolerance for scroll position calculation
+                const canScrollLeft = partnerLogosOuterContainer.scrollLeft > tolerance;
+                const canScrollRight = (partnerLogosOuterContainer.scrollWidth - partnerLogosOuterContainer.clientWidth - partnerLogosOuterContainer.scrollLeft) > tolerance;
+
+                partnerScrollLeftBtn.style.display = canScrollLeft ? 'block' : 'none';
+                partnerScrollRightBtn.style.display = canScrollRight ? 'block' : 'none';
+            }
+
+            partnerScrollLeftBtn.addEventListener('click', () => {
+                partnerLogosOuterContainer.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+            });
+
+            partnerScrollRightBtn.addEventListener('click', () => {
+                partnerLogosOuterContainer.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Initial visibility check and update on scroll or resize
+            updatePartnerArrowVisibility();
+            partnerLogosOuterContainer.addEventListener('scroll', updatePartnerArrowVisibility);
+            window.addEventListener('resize', updatePartnerArrowVisibility);
+
+            // Ensure the hover effect for pausing animation targets the new relative parent
+            const partnerCarouselWrapper = document.querySelector('#partner-logos .relative');
+            const animatedLogoSet = partnerLogosOuterContainer.querySelector('.animate-scroll-logos');
+            if (partnerCarouselWrapper && animatedLogoSet) {
+                 // The CSS rule `.partner-logos-outer-container:hover .animate-scroll-logos` should be updated
+                 // to `#partner-logos .relative:hover .animate-scroll-logos` if you want hover on arrows to pause too.
+                 // Or, handle with JS if preferred, but CSS is often cleaner for hover states.
+            }
+        } else {
+            console.error("Éléments du carrousel des partenaires non trouvés.");
+        }
+
+
+        // Image Lightbox Functionality
+        const imageLightboxModal = document.getElementById('image-lightbox-modal');
+        const lightboxImageContent = document.getElementById('lightbox-image-content');
+        const imageLightboxCloseBtn = document.getElementById('image-lightbox-close-btn');
+        const lightboxPrevBtn = document.getElementById('lightbox-prev-btn');
+        const lightboxNextBtn = document.getElementById('lightbox-next-btn');
+        const galleryImageTriggers = document.querySelectorAll('.gallery-lightbox-trigger');
+        let currentImageIndex = 0;
+        let allImageSources = [];
+
+        if (imageLightboxModal && lightboxImageContent && imageLightboxCloseBtn && lightboxPrevBtn && lightboxNextBtn) {
+            // Collect all image sources from the gallery triggers
+            galleryImageTriggers.forEach(trigger => {
+                if (trigger.dataset.src) {
+                    allImageSources.push(trigger.dataset.src);
+                }
+            });
+
+            galleryImageTriggers.forEach((trigger, index) => {
+                trigger.addEventListener('click', () => {
+                    const imageSrc = trigger.dataset.src;
+                    if (imageSrc) {
+                        currentImageIndex = allImageSources.indexOf(imageSrc); // Find index in the collected sources
+                        lightboxImageContent.src = imageSrc;
+                        imageLightboxModal.classList.remove('hidden');
+                        document.body.style.overflow = 'hidden'; // Prevent body scroll
+                        updateNavButtons();
+                    }
+                });
+            });
+
+            function updateNavButtons() {
+                lightboxPrevBtn.style.display = (currentImageIndex > 0) ? 'block' : 'none';
+                lightboxNextBtn.style.display = (currentImageIndex < allImageSources.length - 1) ? 'block' : 'none';
+            }
+
+            function showImageAtIndex(index) {
+                if (index >= 0 && index < allImageSources.length) {
+                    lightboxImageContent.src = allImageSources[index];
+                    currentImageIndex = index;
+                    updateNavButtons();
+                }
+            }
+
+            lightboxPrevBtn.addEventListener('click', () => {
+                showImageAtIndex(currentImageIndex - 1);
+            });
+
+            lightboxNextBtn.addEventListener('click', () => {
+                showImageAtIndex(currentImageIndex + 1);
+            });
+
+            function closeImageLightbox() {
+                imageLightboxModal.classList.add('hidden');
+                lightboxImageContent.src = ""; // Clear src
+                document.body.style.overflow = ''; // Restore body scroll
+            }
+
+            imageLightboxCloseBtn.addEventListener('click', closeImageLightbox);
+
+            imageLightboxModal.addEventListener('click', (e) => {
+                // Close if clicked on the background overlay, but not on the image/content itself
+                if (e.target === imageLightboxModal) {
+                    closeImageLightbox();
+                }
+            });
+        } else {
+            console.error("Éléments essentiels de la lightbox d'image (modal, content, close, prev, next) manquants dans le DOM.");
+        }
+
+        // Language Switcher Logic (Desktop and Mobile)
+        // Ensure this runs after translate.js is loaded and its functions (setLanguage, initializeLanguage) are available.
+        document.addEventListener('DOMContentLoaded', () => {
+            // Desktop Language Switcher
+            const desktopLangBtn = document.getElementById('dropdown-lang-btn');
+            const desktopLangMenu = document.getElementById('lang-dropdown-menu');
+            const desktopCurrentLangText = document.getElementById('current-lang-text');
+            const desktopLangOptions = document.querySelectorAll('#lang-dropdown-menu .lang-option');
+
+            if (desktopLangBtn && desktopLangMenu && desktopCurrentLangText) {
+                desktopLangBtn.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    desktopLangMenu.classList.toggle('hidden');
+                });
+
+                document.addEventListener('click', function(event) {
+                    if (!desktopLangBtn.contains(event.target) && !desktopLangMenu.contains(event.target)) {
+                        desktopLangMenu.classList.add('hidden');
+                    }
+                });
+
+                desktopLangOptions.forEach(option => {
+                    option.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log('Langue choisie:', this.dataset.lang);
+                        setLanguage(this.dataset.lang);
+                    });
+                });
+            }
+
+            // Mobile Language Selection
+            const mobileLangButtons = document.querySelectorAll('#mobile-menu .mobile-lang-option');
+            if (mobileLangButtons) {
+                mobileLangButtons.forEach(option => {
+                    option.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const selectedLang = this.dataset.lang;
+                        if (typeof setLanguage === 'function') setLanguage(selectedLang);
+                        if (mobileMenu && mobileMenu.classList.contains('visible')) { // mobileMenu is from existing script
+                            mobileMenu.classList.remove('visible');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+            }
+
+            // Initialize language
+            if (typeof initializeLanguage === 'function') {
+                initializeLanguage();
+            } else {
+                console.error("translate.js or initializeLanguage function not loaded.");
+            }
+        });
+    </script>
+</body>
+</html>
