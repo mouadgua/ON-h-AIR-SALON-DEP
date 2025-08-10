@@ -84,7 +84,8 @@ const translations = {
         "serviceCategoryCoiffure": "Hairdressing",
         "serviceCategoryColoration": "Coloring",
         "serviceCategoryHairCare": "Hair Care",
-        "serviceCategoryNails": "Nails (Hands & Feet)",
+        "serviceCategoryNailsManucure": "Manicure",
+        "serviceCategoryNailsPedicure": "Pedicure",
         "serviceCategoryNailExtras": "Nail Extras",
         "serviceCategoryFacials": "Facials",
         "serviceCategoryWaxing": "Waxing",
@@ -276,7 +277,8 @@ const translations = {
         "serviceCategoryCoiffure": "Coiffure",
         "serviceCategoryColoration": "Coloration",
         "serviceCategoryHairCare": "Soins Cheveux",
-        "serviceCategoryNails": "Ongles (Mains & Pieds)",
+        "serviceCategoryNailsManucure": "Manucure",
+        "serviceCategoryNailsPedicure": "Pedicure",
         "serviceCategoryNailExtras": "Extras Ongles",
         "serviceCategoryFacials": "Soins Visage",
         "serviceCategoryWaxing": "Épilation",
@@ -499,4 +501,5 @@ function updatePromoBar(text) {
         promoWrapper.style.animationDuration = (spanCount * 5) + 's';
     }
 }
+
 
