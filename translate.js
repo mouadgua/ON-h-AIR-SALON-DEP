@@ -178,6 +178,9 @@ const translations = {
         "testimonial1Text": "\"I came to this salon after a bad experience elsewhere, and I couldn't be more grateful for the incredible work done here! The hairdresser Fahd took the time to listen to my expectations and not only managed to fix the damage but also to bring life and shine back to my hair. His expertise in modern techniques and his attention to detail are truly impressive. Thank you again for this superb result and for saving my hair! I highly recommend this salon\"",
         "testimonial2Text": "\"I am so satisfied with my experience from A to Z. The welcome was warm and super friendly. I had cut my hair short myself at home and made a disaster. Nabil was exceptional, he understood and reassured me, and throughout the service, the conversation was very pleasant, filled with positive energy and kindness. If you are looking to be pampered and spend a relaxing moment, this is the right address. The cut was top-notch, it's the first time in my life I leave a hair salon with a big smile and magnificent hair.\"",
         "testimonial3Text": "\"Second visit to Fahd, and once again I leave super happy! The first time, I had a balayage that was just magnificent, exactly as I wanted. Today, it was for a cut, and the result is once again perfect. He is attentive, meticulous, and very professional. I recommend him olhos fechados. Thank you again for your work, your welcome, and your good mood🙏🏽, always top-notch, and not forgetting Nabil and his warm welcome, a truly friendly team 🥰 I can't wait to come back for the next step!\"",
+        "testimonial8Text": "\"An exceptional experience!This was my first visit to this salon, and I can say with certainty that it won’t be my last. I don’t think I could find anything better elsewhere.A huge thank you to Nabil, a passionate, attentive person who is also very generous with his advice. He takes the time to explain everything clearly and simply, which allowed me to understand my hair in a completely new way.I also really appreciated the professionalism, the warm welcome, and the atmosphere of the place. Everything was perfect from start to finish. What I write here is truly sincere, and I strongly encourage everyone to discover this salon and benefit from the expertise of Nabil and Fahd, two rare people you don’t come across often nowadays."\",
+        "testimonial6Text": "\" I had the pleasure of getting my nails done at Nezha’s. She is professional, attentive, gives excellent advice, and uses quality products. I am very, very satisfied with the result. "\"
+        "testimonial7Text": "\" Impeccable work! My nails are beautiful: the shape, the color, everything is perfect. The nail technician is gentle and meticulous. I’m delighted with the result, I will definitely come back. "\"
         // Gallery Page
         "galleryPageTitle": "Our <span class=\"text-beige-600\">gallery</span>",
         "galleryPageIntro": "Discover the atmosphere and achievements of our institute through these captured moments",
@@ -501,5 +504,6 @@ function updatePromoBar(text) {
         promoWrapper.style.animationDuration = (spanCount * 5) + 's';
     }
 }
+
 
 
