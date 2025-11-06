@@ -477,17 +477,20 @@ function setLanguage(lang) {
 }
 
 function initializeLanguage() {
-    const savedLang = localStorage.getItem('selectedLanguage');
-    const browserLang = navigator.language.split('-')[0];
-
-    if (savedLang && (savedLang === 'fr' || savedLang === 'en')) {
-        setLanguage(savedLang);
-    } else if (browserLang === 'en') {
-        setLanguage('en');
-    } else {
-        setLanguage('fr');
-    }
+    // This function will be called via DOMContentLoaded event listener in index.html
+    // to ensure the DOM is ready before translation.
+        const savedLang = localStorage.getItem('selectedLanguage');
+        const browserLang = navigator.language.split('-')[0];
+    
+        if (savedLang && (savedLang === 'fr' || savedLang === 'en')) {
+            setLanguage(savedLang);
+        } else if (browserLang === 'en') {
+            setLanguage('en');
+        } else {
+            setLanguage('fr');
+        }
 }
+
 function updatePromoBar(text) {
     const promoWrapper = document.querySelector('.promotion-text-wrapper');
     if (promoWrapper) {
@@ -504,7 +507,3 @@ function updatePromoBar(text) {
         promoWrapper.style.animationDuration = (spanCount * 5) + 's';
     }
 }
-
-
-
-

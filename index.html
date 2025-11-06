@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ON h'AIR</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,46 +53,6 @@
         .hero {
             background-size: cover;
             background-position: center;
-        }
-        /* Remplace le style .service-card existant par celui-ci pour un look sobre, noir & blanc, moderne */
-
-        .service-card {
-            background: none;
-            border: none;
-            box-shadow: none;
-            border-radius: 0;
-            padding: 0.7em 0;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            min-height: unset;
-            position: relative;
-            overflow: visible;
-        }
-
-        .service-card h4 {
-            font-family: "Libertinus Math", system-ui;
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: #111;
-            margin: 0;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            line-height: 1.2;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.07);
-        }
-
-        .service-card span {
-            font-size: 1.08rem;
-            font-weight: 600;
-            color: #222;
-            margin: 0;
-            background: none;
-            border: none;
-            box-shadow: none;
-            border-radius: 0;
-            padding: 0;
         }
         .testimonial-card {
             background: linear-gradient(to bottom right, #fff9f5, #fff);
@@ -552,7 +512,7 @@
 
                 <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                     <div class="md:w-1/2 fade-in">
-                        <img src="./gallerie/im47.jpeg" alt="Intérieur du salon Éclat Beauté" class="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]">
+                        <img src="./gallerie/im47.jpeg" alt="Intérieur du salon Éclat Beauté" class="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]" loading="lazy">
                     </div>
                     <div class="md:w-1/2 fade-in" style="transition-delay: 0.1s;">
                         <h3 class="font-serif text-2xl font-semibold text-gray-700 mb-4" data-translate="aboutCommitmentTitle">Notre Engagement envers Vous</h3>
@@ -610,7 +570,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                      <!-- Service Preview Item 1 -->
                     <div class="relative group overflow-hidden h-80 md:h-96 fade-in" style="transition-delay: 0.2s;">
-                        <img src="./images/service_preview/coiffure.jpg" alt="Aperçu Manucure & Pedicure" class="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110">
+                        <img src="./images/service_preview/coiffure.jpg" alt="Aperçu Manucure & Pedicure" class="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110" loading="lazy">
                         <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-6 transition-all duration-500 text-center bg-black bg-opacity-60 opacity-100 md:bg-opacity-0 md:opacity-0 md:group-hover:bg-opacity-70 md:group-hover:opacity-100">
                             <h3 class="font-serif text-2xl font-bold mb-2" data-translate="servicePreviewCoiffureTitle">Coiffure</h3>
                             <p class="mb-4 text-sm" data-translate="servicePreviewCoiffureText">Misez sur l’élégance, laissez parler votre style.</p>
@@ -621,7 +581,7 @@
                     </div>
                     <!-- Service Preview Item 2 -->
                     <div class="relative group overflow-hidden h-80 md:h-96 fade-in" style="transition-delay: 0.3s;">
-                        <img src="./images/service_preview/coloration.jpg" alt="Aperçu Maquillage" class="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110">
+                        <img src="./images/service_preview/coloration.jpg" alt="Aperçu Maquillage" class="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110" loading="lazy">
                         <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-6 transition-all duration-500 text-center bg-black bg-opacity-60 opacity-100 md:bg-opacity-0 md:opacity-0 md:group-hover:bg-opacity-70 md:group-hover:opacity-100">
                             <h3 class="font-serif text-2xl font-bold mb-2" data-translate="servicePreviewColorationTitle">Coloration</h3>
                             <p class="mb-4 text-sm" data-translate="servicePreviewColorationText">Des nuances infinies, des résultats éclatants.</p>
@@ -632,7 +592,7 @@
                     </div>
                     <!-- Service Preview Item 3 -->
                     <div class="relative group overflow-hidden h-80 md:h-96 fade-in" style="transition-delay: 0.4s;">
-                        <img src="./images/service_preview/esthetique.JPG" alt="Aperçu Soins Capillaires" class="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110">
+                        <img src="./images/service_preview/esthetique.JPG" alt="Aperçu Soins Capillaires" class="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110" loading="lazy">
                         <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-6 transition-all duration-500 text-center bg-black bg-opacity-60 opacity-100 md:bg-opacity-0 md:opacity-0 md:group-hover:bg-opacity-70 md:group-hover:opacity-100">
                             <h3 class="font-serif text-2xl font-bold mb-2" data-translate="servicePreviewEsthetiqueTitle">Esthétique</h3>
                             <p class="mb-4 text-sm" data-translate="servicePreviewEsthetiqueText">Un moment rien que pour vous, un éclat qui dure.</p>
@@ -643,7 +603,7 @@
                     </div>
                     <!-- Service Preview Item 4 -->
                     <div class="relative group overflow-hidden h-80 md:h-96 fade-in" style="transition-delay: 0.1s;">
-                        <img src="./images/service_preview/nailbar.JPG" alt="Aperçu Soin du visage" class="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110">
+                        <img src="./images/service_preview/nailbar.JPG" alt="Aperçu Soin du visage" class="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110" loading="lazy">
                         <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-6 transition-all duration-500 text-center bg-black bg-opacity-60 opacity-100 md:bg-opacity-0 md:opacity-0 md:group-hover:bg-opacity-70 md:group-hover:opacity-100">
                             <h3 class="font-serif text-2xl font-bold mb-2" data-translate="servicePreviewNailBarTitle">nail bar</h3>
                             <p class="mb-4 text-sm" data-translate="servicePreviewNailBarText">Couleurs, formes et brillance à votre image.</p>
@@ -677,25 +637,25 @@
                     <div class="gallery-preview-carousel-inner-container whitespace-nowrap">
                         <div class="gallery-preview-set inline-flex animate-scroll-gallery-preview items-stretch"> <!-- items-stretch pour que les images prennent toute la hauteur définie -->
                             <!-- Images de la galerie - Répétez et ajoutez autant que vous voulez -->
-                            <img src="./gallerie/im59.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im63.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im55.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im49.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im68.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im38.JPG" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im54.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im9.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im27.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im59.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im63.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im55.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im49.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im68.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im38.JPG" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im54.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im9.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im27.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
                             <!-- Dupliquer le set pour le défilement infini -->
-                            <img src="./gallerie/im59.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im63.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im55.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im49.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im68.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im38.JPG" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im54.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im9.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
-                            <img src="./gallerie/im27.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover">
+                            <img src="./gallerie/im59.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im63.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im55.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im49.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im68.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im38.JPG" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im54.jpg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im9.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
+                            <img src="./gallerie/im27.jpeg" alt="Aperçu Galerie" class="h-64 md:h-64 object-cover" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -721,7 +681,7 @@
 
                 <!-- Carte pour la Visite Virtuelle 360° -->
                 <div class="max-w-2xl mx-auto bg-beige-50 rounded-xl shadow-xl overflow-hidden fade-in" style="transition-delay: 0.1s;">
-                    <img class="w-full object-cover" src="./images/front/im_front.png" alt="Aperçu de la visite virtuelle 360° d'Éclat Beauté">
+                    <img class="w-full object-cover" src="./images/front/im_front.png" alt="Aperçu de la visite virtuelle 360° d'Éclat Beauté" loading="lazy">
                     <div class="p-8 text-center">
                         <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-4" data-translate="virtualTourCardTitle">Plongez dans notre univers</h3>
                         <p class="text-gray-600 mb-6" data-translate="virtualTourCardText">
@@ -753,7 +713,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Team Member Card 1: Nabil -->
                     <div class="bg-beige-50 rounded-xl shadow-lg p-6 text-center fade-in slide-up hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300" style="transition-delay: 0.1s;">
-                        <img src="./images/NABIL.jpeg" alt="Nabil - Coiffeur Styliste" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-white shadow-md">
+                        <img src="./images/NABIL.jpeg" alt="Nabil - Coiffeur Styliste" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-white shadow-md" loading="lazy">
                         <h3 class="font-serif text-2xl font-bold mb-2" data-translate="teamNabilTitle">Nabil</h3>
                         <p class="text-beige-600 font-medium mb-3" data-translate="teamNabilRole">Coiffeur Styliste</p>
                         <p class="text-gray-600 text-sm mb-4" data-translate="teamNabilBio">
@@ -765,7 +725,7 @@
                     </div>
                     <!-- Team Member Card 2: Fahd -->
                     <div class="bg-beige-50 rounded-xl shadow-lg p-6 text-center fade-in slide-up hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300" style="transition-delay: 0.2s;">
-                        <img src="./images/FAHD.jpeg" alt="Fahd - Expert Coloriste" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-white shadow-md">
+                        <img src="./images/FAHD.jpeg" alt="Fahd - Expert Coloriste" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-white shadow-md" loading="lazy">
                         <h3 class="font-serif text-2xl font-bold mb-2" data-translate="teamFahdTitle">Fahd</h3>
                         <p class="text-beige-600 font-medium mb-3" data-translate="teamFahdRole">Expert Coifure</p>
                         <p class="text-gray-600 text-sm mb-4" data-translate="teamFahdBio">
@@ -777,7 +737,7 @@
                     </div>
                     <!-- Team Member Card 3: Nezha -->
                     <div class="bg-beige-50 rounded-xl shadow-lg p-6 text-center fade-in slide-up hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300" style="transition-delay: 0.3s;">
-                        <img src="./images/NEZHA.jpeg" alt="Nezha - Spécialiste Soins Esthétiques" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-white shadow-md">
+                        <img src="./images/NEZHA.jpeg" alt="Nezha - Spécialiste Soins Esthétiques" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-white shadow-md" loading="lazy">
                         <h3 class="font-serif text-2xl font-bold mb-2" data-translate="teamNezhaTitle">Nezha</h3>
                         <p class="text-beige-600 font-medium mb-3" data-translate="teamNezhaRole">Esthéticienne experte</p>
                         <p class="text-gray-600 text-sm mb-4" data-translate="teamNezhaBio">
@@ -807,7 +767,7 @@
                 <!-- Testimonial 1 -->
                 <div class="p-6 rounded-xl testimonial-card shadow-md fade-in" style="transition-delay: 0.1s">
                     <div class="flex items-center mb-6">
-                        <img src="./images/la-personne.png" alt="Client" class="w-16 h-16 rounded-full object-cover">
+                        <img src="./images/la-personne.png" alt="Client" class="w-16 h-16 rounded-full object-cover" loading="lazy">
                         <div class="ml-4">
                             <h4 class="font-bold text-gray-800">Halima Lahbab</h4>
                             <div class="flex text-beige-600">
@@ -839,7 +799,7 @@
                 <!-- Testimonial 2 -->
                 <div class="p-6 rounded-xl testimonial-card shadow-md fade-in" style="transition-delay: 0.1s">
                     <div class="flex items-center mb-6">
-                        <img src="./images/la-personne.png" alt="Client" class="w-16 h-16 rounded-full object-cover">
+                        <img src="./images/la-personne.png" alt="Client" class="w-16 h-16 rounded-full object-cover" loading="lazy">
                         <div class="ml-4">
                             <h4 class="font-bold text-gray-800">Rim EL</h4>
                             <div class="flex text-beige-600">
@@ -871,7 +831,7 @@
                 <!-- Testimonial 3 -->
                 <div class="p-6 rounded-xl testimonial-card shadow-md fade-in" style="transition-delay: 0.1s">
                     <div class="flex items-center mb-6">
-                        <img src="./images/la-personne.png" alt="Client" class="w-16 h-16 rounded-full object-cover">
+                        <img src="./images/la-personne.png" alt="Client" class="w-16 h-16 rounded-full object-cover" loading="lazy">
                         <div class="ml-4">
                             <h4 class="font-bold text-gray-800">Oulfa Chlieh</h4>
                             <div class="flex text-beige-600">
@@ -919,45 +879,45 @@
                     <div class="partner-logos-outer-container overflow-x-auto w-full py-4 scrollbar-hide">
                         <div class="partner-logos-inner-container whitespace-nowrap">
                             <div class="partner-logo-set inline-flex animate-scroll-logos items-center">
-                                <img src="./images/partenaires/par1.png" alt="Partner Logo 1" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par2.png" alt="Partner Logo 2" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par3.png" alt="Partner Logo 3" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par4.png" alt="Partner Logo 4" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par5.png" alt="Partner Logo 5" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par1.png" alt="Partner Logo 1" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par2.png" alt="Partner Logo 2" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par3.png" alt="Partner Logo 3" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par4.png" alt="Partner Logo 4" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par5.png" alt="Partner Logo 5" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
                                 <!-- Duplicate Set -->
-                                <img src="./images/partenaires/par6.png" alt="Partner Logo 6" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par7.png" alt="Partner Logo 7" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par8.png" alt="Partner Logo 8" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par9.png" alt="Partner Logo 9" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par10.png" alt="Partner Logo 10" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par11.png" alt="Partner Logo 11" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par12.png" alt="Partner Logo 12" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par13.png" alt="Partner Logo 13" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par14.png" alt="Partner Logo 14" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par15.png" alt="Partner Logo 15" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par16.png" alt="Partner Logo 16" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par17.png" alt="Partner Logo 17" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par18.png" alt="Partner Logo 18" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par19.png" alt="Partner Logo 19" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par20.png" alt="Partner Logo 20" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par21.png" alt="Partner Logo 21" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                <img src="./images/partenaires/par6.png" alt="Partner Logo 6" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par7.png" alt="Partner Logo 7" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par8.png" alt="Partner Logo 8" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par9.png" alt="Partner Logo 9" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par10.png" alt="Partner Logo 10" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par11.png" alt="Partner Logo 11" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par12.png" alt="Partner Logo 12" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par13.png" alt="Partner Logo 13" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par14.png" alt="Partner Logo 14" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par15.png" alt="Partner Logo 15" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par16.png" alt="Partner Logo 16" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par17.png" alt="Partner Logo 17" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par18.png" alt="Partner Logo 18" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par19.png" alt="Partner Logo 19" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par20.png" alt="Partner Logo 20" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par21.png" alt="Partner Logo 21" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
                                 <!-- duplicate set -->
-                                 <img src="./images/partenaires/par6.png" alt="Partner Logo 6" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par7.png" alt="Partner Logo 7" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par8.png" alt="Partner Logo 8" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par9.png" alt="Partner Logo 9" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par10.png" alt="Partner Logo 10" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par11.png" alt="Partner Logo 11" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par12.png" alt="Partner Logo 12" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par13.png" alt="Partner Logo 13" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par14.png" alt="Partner Logo 14" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par15.png" alt="Partner Logo 15" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par16.png" alt="Partner Logo 16" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par17.png" alt="Partner Logo 17" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par18.png" alt="Partner Logo 18" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par19.png" alt="Partner Logo 19" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par20.png" alt="Partner Logo 20" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
-                                <img src="./images/partenaires/par21.png" alt="Partner Logo 21" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300">
+                                 <img src="./images/partenaires/par6.png" alt="Partner Logo 6" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par7.png" alt="Partner Logo 7" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par8.png" alt="Partner Logo 8" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par9.png" alt="Partner Logo 9" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par10.png" alt="Partner Logo 10" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par11.png" alt="Partner Logo 11" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par12.png" alt="Partner Logo 12" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par13.png" alt="Partner Logo 13" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par14.png" alt="Partner Logo 14" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par15.png" alt="Partner Logo 15" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par16.png" alt="Partner Logo 16" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par17.png" alt="Partner Logo 17" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par18.png" alt="Partner Logo 18" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par19.png" alt="Partner Logo 19" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par20.png" alt="Partner Logo 20" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
+                                <img src="./images/partenaires/par21.png" alt="Partner Logo 21" class="h-44 md:h-40 mx-4 md:mx-6 filter grayscale hover:grayscale-0 transition-all duration-300" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -1286,206 +1246,204 @@
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im58.jpg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im58.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im58.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im59.jpg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im59.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im59.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im60.jpg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im60.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im60.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im61.jpg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im61.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im61.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im62.jpg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im62.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im62.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im63.jpg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im63.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im63.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im65.jpg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im65.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im65.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
 
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im66.jpg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im66.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im66.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
 
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im67.jpg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im67.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im67.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
 
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im68.jpg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im68.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im68.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <!-- Image 1 -->
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
                      data-src="./gallerie/im54.jpg" style="transition-delay: 0.1s;">
-                    <img src="./gallerie/im54.jpg" alt="Galerie Image Salon 1" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im54.jpg" alt="Galerie Image Salon 1" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <!-- Image 2 -->
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
                      data-src="./gallerie/im55.jpg" style="transition-delay: 0.15s;">
-                    <img src="./gallerie/im55.jpg" alt="Galerie Image Salon 2" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im55.jpg" alt="Galerie Image Salon 2" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <!-- Image 3 -->
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
                      data-src="./gallerie/im2.jpeg" style="transition-delay: 0.2s;">
-                    <img src="./gallerie/im2.jpeg" alt="Galerie Image Coiffure" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im2.jpeg" alt="Galerie Image Coiffure" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <!-- Image 4 -->
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
                      data-src="./gallerie/im6.jpeg" style="transition-delay: 0.25s;">
-                    <img src="./gallerie/im6.jpeg" alt="Galerie Image Soin" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im6.jpeg" alt="Galerie Image Soin" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <!-- Image 5 -->
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
                      data-src="./gallerie/im7.jpeg" style="transition-delay: 0.3s;">
-                    <img src="./gallerie/im7.jpeg" alt="Galerie Image Détail" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im7.jpeg" alt="Galerie Image Détail" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <!-- Image 6 -->
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
                      data-src="./gallerie/im9.jpeg" style="transition-delay: 0.35s;">
-                    <img src="./gallerie/im9.jpeg" alt="Galerie Image Ambiance" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im9.jpeg" alt="Galerie Image Ambiance" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <!-- Image 8 -->
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
                      data-src="./gallerie/im12.JPG" style="transition-delay: 0.45s;">
-                    <img src="./gallerie/im12.JPG" alt="Galerie Image Manucure" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im12.JPG" alt="Galerie Image Manucure" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <!-- Image 9 -->
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
                      data-src="./gallerie/im14.JPG" style="transition-delay: 0.5s;">
-                    <img src="./gallerie/im14.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im14.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <!-- Image 10 -->
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
                      data-src="./gallerie/im16.jpeg" style="transition-delay: 0.55s;">
-                    <img src="./gallerie/im16.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im16.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <!-- Image 11 -->
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
                      data-src="./gallerie/im17.jpeg" style="transition-delay: 0.6s;">
-                    <img src="./gallerie/im17.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im17.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
-                <!-- Continuez ce modèle pour toutes vos images -->
-                <!-- Exemple pour im19.JPG -->
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-72 md:h-96 cursor-pointer group"
                      data-src="./gallerie/im19.JPG" style="transition-delay: 0.7s;">
-                    <img src="./gallerie/im19.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im19.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im21.jpeg" style="transition-delay: 0.8s;">
-                    <img src="./gallerie/im21.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im21.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im23.jpeg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im23.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im23.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im25.JPG" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im25.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im25.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im26.jpeg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im26.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im26.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im27.jpeg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im27.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im27.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im28.JPG" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im28.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im28.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im29.jpeg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im29.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im29.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im31.JPG" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im31.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im31.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im32.JPG" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im32.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im32.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im33.jpeg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im33.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im33.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im35.jpeg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im35.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im35.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im36.jpeg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im36.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im36.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im38.JPG" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im38.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im38.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im40.JPG" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im40.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im40.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im42.JPG" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im42.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im42.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im43.JPG" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im43.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im43.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im44.jpeg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im44.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im44.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im45.JPG" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im45.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im45.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im48.JPG" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im48.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im48.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im49.jpeg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im49.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im49.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im50.JPG" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im50.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im50.JPG" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im51.jpeg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im51.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im51.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im53.jpeg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im53.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im53.jpeg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im55.jpg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im55.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im55.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im56.png" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im56.png" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im56.png" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
                 <div class="gallery-lightbox-trigger overflow-hidden rounded-lg fade-in shadow-md hover:shadow-xl transition-shadow duration-300 h-64 md:h-80 cursor-pointer group"
                      data-src="./gallerie/im69.jpg" style="transition-delay: 0.85s;">
-                    <img src="./gallerie/im69.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <img src="./gallerie/im69.jpg" alt="Galerie Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
                 </div>
             </div>
 
@@ -1605,8 +1563,7 @@
     <button id="back-to-top-btn" class="hidden fixed bottom-6 right-6 bg-red-500 hover:bg-red-600 text-white w-14 h-14 rounded-full items-center justify-center shadow-lg transition" aria-label="Retour en haut">
         <i class="fas fa-arrow-up text-xl"></i>
     </button>
-
-    <script src="translate.js" defer></script>
+    
     <script>
         // Preloader
         window.addEventListener('load', function() {
@@ -1622,6 +1579,12 @@
                 logoSection.scrollIntoView({ block: 'start', behavior: 'auto' });
             }
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize language settings after the DOM is fully loaded and parsed.
+            // This ensures that all elements are available for translation.
+            if (typeof initializeLanguage === 'function') initializeLanguage();
+
                 // Mobile menu toggle
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -2012,37 +1975,34 @@
             console.error("Éléments essentiels de la lightbox d'image (modal, content, close, prev, next) manquants dans le DOM.");
         }
 
-        // Language Switcher Logic (Desktop and Mobile)
-        // Ensure this runs after translate.js is loaded and its functions (setLanguage, initializeLanguage) are available.
-        document.addEventListener('DOMContentLoaded', () => {
-            // Desktop Language Switcher
-            const desktopLangBtn = document.getElementById('dropdown-lang-btn');
-            const desktopLangMenu = document.getElementById('lang-dropdown-menu');
-            const desktopCurrentLangText = document.getElementById('current-lang-text');
-            const desktopLangOptions = document.querySelectorAll('#lang-dropdown-menu .lang-option');
+        // Desktop Language Switcher
+        const desktopLangBtn = document.getElementById('dropdown-lang-btn');
+        const desktopLangMenu = document.getElementById('lang-dropdown-menu');
+        const desktopCurrentLangText = document.getElementById('current-lang-text');
+        const desktopLangOptions = document.querySelectorAll('#lang-dropdown-menu .lang-option');
 
-            if (desktopLangBtn && desktopLangMenu && desktopCurrentLangText) {
-                desktopLangBtn.addEventListener('click', function(event) {
-                    event.stopPropagation();
-                    desktopLangMenu.classList.toggle('hidden');
-                });
+        if (desktopLangBtn && desktopLangMenu && desktopCurrentLangText) {
+            desktopLangBtn.addEventListener('click', function(event) {
+                event.stopPropagation();
+                desktopLangMenu.classList.toggle('hidden');
+            });
 
-                document.addEventListener('click', function(event) {
-                    if (!desktopLangBtn.contains(event.target) && !desktopLangMenu.contains(event.target)) {
-                        desktopLangMenu.classList.add('hidden');
+            document.addEventListener('click', function(event) {
+                if (!desktopLangBtn.contains(event.target) && !desktopLangMenu.contains(event.target)) {
+                    desktopLangMenu.classList.add('hidden');
+                }
+            });
+
+            desktopLangOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (typeof setLanguage === 'function') {
+                        setLanguage(this.dataset.lang);
                     }
                 });
+            });
+        }
 
-                desktopLangOptions.forEach(option => {
-                    option.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        console.log('Langue choisie:', this.dataset.lang);
-                        setLanguage(this.dataset.lang);
-                    });
-                });
-            }
-        })
-        
         // Mobile language bubble logic
         const mobileLangBtn = document.getElementById('mobile-lang-btn');
         const mobileLangDropdown = document.getElementById('mobile-lang-dropdown');
@@ -2064,6 +2024,7 @@
                 });
             });
         }
+
         document.querySelectorAll('.service-filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const target = document.querySelector(`[data-category-anchor="${this.dataset.target}"]`);
@@ -2077,6 +2038,7 @@
                 }
             });
         });
+    });
     </script>
 </body>
 </html>
