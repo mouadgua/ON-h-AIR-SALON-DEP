@@ -1,0 +1,340 @@
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+            padding-top: 40px; /* Adjust if promo bar height changes, e.g., 36px-40px */
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff9f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        .preloader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .spinner {
+            width: 70px;
+            height: 70px;
+            border: 3px solid rgba(218, 165, 112, 0.3);
+            border-radius: 50%;
+            border-top-color: hsl(30, 59%, 65%);
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .hero {
+            background-size: cover;
+            background-position: center;
+        }
+        /* Remplace le style .service-card existant par celui-ci pour un look sobre, noir & blanc, moderne */
+
+        .service-card {
+            background: none;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0.7em 0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            min-height: unset;
+            position: relative;
+            overflow: visible;
+        }
+
+        .service-card h4 {
+            font-family: "Libertinus Math", system-ui;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #111;
+            margin: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.2;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+
+        .service-card span {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: #222;
+            margin: 0;
+            background: none;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0;
+        }
+        .testimonial-card {
+            background: linear-gradient(to bottom right, #fff9f5, #fff);
+        }
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+        }
+        .slide-up {
+            transform: translateY(30px);
+        }
+        .slide-up.visible {
+            transform: translateY(0);
+        }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #daa570;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        #social-media-bubbles {
+            z-index: 65; /* S'assure que les boutons sociaux sont au-dessus du menu mobile (z-index 60) */
+        }
+        #back-to-top-btn {
+            /* Ensure it's on a similar layer as social media bubbles, above mobile menu */
+            z-index: 65;
+        }
+
+        /* Full-screen Mobile Menu with Blur and Slide-in */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%; /* Start off-screen */
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 249, 245, 0.85); /* Light beige (bg-beige-50) with transparency */
+            backdrop-filter: blur(10px); /* Effet de flou */
+            -webkit-backdrop-filter: blur(10px); /* Safari support for backdrop-filter */
+            transition: left 0.4s ease-in-out; /* Smooth transition for the left property */
+            z-index: 60; /* High z-index to cover content, above menu button container */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem; /* Add some padding for content */
+            overflow-y: auto; /* Allow scrolling if content overflows on small screens */
+        }
+        #mobile-menu.visible {
+            left: 0; /* Affiche le menu */
+        }
+
+        /* Effet shiny sur le logo */
+        .logo-shiny {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+        .logo-shiny::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+        }
+        @keyframes shiny {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        .promotion-bar {
+            background-color: #daa570;
+            color: white;
+            padding: 10px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            overflow: hidden;
+            white-space: nowrap;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9990;
+        }
+        .promotion-text-wrapper {
+            display: inline-block;
+            width: max-content;
+            min-width: 100vw;
+            animation: scroll-text-kf 40s linear infinite;
+        }
+        .promotion-text-wrapper span {
+            padding-right: 3em;
+        }
+        @keyframes scroll-text-kf {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Partner Logos Carousel */
+        .animate-scroll-logos {
+            animation: scroll-logos-kf 30s linear infinite;
+        }
+        @keyframes scroll-logos-kf {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        #partner-logos .relative:hover .animate-scroll-logos {
+            animation-play-state: paused;
+        }
+        /* Gallery Preview Carousel */
+        .animate-scroll-gallery-preview {
+            animation: scroll-gallery-preview-kf 30s linear infinite; /* Slower scroll for larger images */
+        }
+        @keyframes scroll-gallery-preview-kf {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        /* Utility to hide scrollbar */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Ensure arrows are clickable and have a decent size */
+        #partner-scroll-left, #partner-scroll-right {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            
+        }
+        .gallery-preview-carousel-outer-container:hover .animate-scroll-gallery-preview {
+            animation-play-state: paused;
+        }
+
+        /* Lightbox Modal Styles */
+        .lightbox-modal {
+            background-color: rgba(0, 0, 0, 0.85);
+            transition: opacity 0.3s ease-in-out;
+        }
+        .lightbox-content {
+            max-width: 90vw; /* Max width for content */
+            max-height: 90vh; /* Max height for content */
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: calc(90vh - 50px); /* Adjust based on padding/close button */
+            display: block;
+            margin: auto;
+        }
+        .lightbox-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+        .lightbox-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10000; /* Above image */
+        }
+        .lightbox-prev-btn { left: 10px; }
+        .lightbox-next-btn { right: 10px; }
+
+        /* ...dans <style>... */
+        #mobile-lang-bubble {
+            position: fixed;
+            top: 100px;
+            right: 16px;
+            z-index: 9999;
+            /* Animation d’apparition */
+            animation: lang-bubble-pop 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes lang-bubble-pop {
+            0% { transform: scale(0.7); opacity: 0; }
+            60% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        #mobile-lang-btn {
+            background: linear-gradient(135deg, #daa570 0%, #ac9362 100%);
+            box-shadow: 0 4px 18px rgba(172,147,98,0.18), 0 1.5px 8px rgba(0,0,0,0.08);
+            border: 2px solid #fff;
+            color: #fff;
+            width: 42px;      /* réduit la largeur */
+            height: 42px;     /* réduit la hauteur */
+            font-size: 1.2rem; /* réduit la taille de l’icône */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+            cursor: pointer;
+            outline: none;
+        }
+        #mobile-lang-btn:hover, #mobile-lang-btn:focus {
+            background: linear-gradient(135deg, #ac9362 0%, #daa570 100%);
+            box-shadow: 0 6px 24px rgba(172,147,98,0.28), 0 2px 12px rgba(0,0,0,0.12);
+            transform: scale(1.08);
+        }
+        #mobile-lang-btn i {
+            font-size: 1em;
+        }
+        #mobile-lang-dropdown {
+            min-width: 140px;
+            top: 60px;
+            right: 0;
+            background: #fff;
+            border: 1px solid #daa570;
+            box-shadow: 0 4px 16px rgba(172,147,98,0.13);
+            border-radius: 12px;
+            padding: 0.5em 0.5em;
+        }
+        #mobile-lang-dropdown button {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: #ac9362;
+            background: none;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            width: 100%;
+            text-align: left;
+            transition: background 0.18s, color 0.18s;
+        }
+        #mobile-lang-dropdown button:hover {
+            background: #f8f1e7;
+            color: #daa570;
+        }
+        .service-filter-btn.active {
+            background: #daa570;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(172,147,98,0.13);
+        }
+        .service-filter-btn:hover {
+            background: #daa570 !important;
+            color: #fff !important;
+        }      

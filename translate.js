@@ -1,4 +1,3 @@
-// c:\Users\mouad\Desktop\work\on-hair\ON-h-AIR-main\translate.js
 const translations = {
     en: {
         // Promotion Bar
