@@ -26,6 +26,18 @@ CREATE TABLE services (
     prix_base INT NOT NULL,
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
+INSERT INTO categories (id, nom_fr, nom_en, data_target) VALUES 
+(1, 'COIFFURE', 'HAIRDRESSING', 'serviceCategoryCoiffure'),
+(2, 'COLORATION', 'COLORING', 'serviceCategoryColoration'),
+(3, 'SOINS DE CHEVEUX', 'HAIR CARE', 'serviceCategoryHairCare'),
+(4, 'ÉPILATION', 'WAXING', 'serviceCategoryWaxing'),
+(5, 'MASSAGE', 'MASSAGE', 'serviceCategoryMassages'),
+(6, 'YEUX', 'EYES', 'serviceCategoryEyes'),
+(7, 'MAQUILLAGE', 'MAKEUP', 'serviceCategoryMakeup'),
+(8, 'MANUCURE', 'MANICURE', 'serviceCategoryNailsManucure'),
+(9, 'PEDICURE', 'PEDICURE', 'serviceCategoryNailsPedicure'),
+(10, 'EXTRA ONGLES', 'NAIL EXTRAS', 'serviceCategoryNailExtras'),
+(11, 'SOIN DE VISAGE', 'FACIALS', 'serviceCategoryFacials');
 
 INSERT INTO site_content (element_key, content_fr, content_en) VALUES 
 -- Barre de Promotion
