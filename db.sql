@@ -4,7 +4,7 @@ USE on_hair_db;
 -- Table pour le contenu textuel fixe et les liens (Promo, Slogan, Réseaux, Maps)
 CREATE TABLE site_content (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    element_key VARCHAR(100) UNIQUE NOT NULL, 
+    element_key VARCHAR(100) UNIQUE NOT NULL,
     content_fr TEXT NOT NULL,
     content_en TEXT NOT NULL
 );
@@ -14,7 +14,7 @@ CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom_fr VARCHAR(100) NOT NULL,
     nom_en VARCHAR(100) NOT NULL,
-    data_target VARCHAR(100) NOT NULL -- ex: serviceCategoryCoiffure
+    data_target VARCHAR(100) NOT NULL
 );
 
 -- Table des services
@@ -27,6 +27,19 @@ CREATE TABLE services (
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
 
+INSERT INTO categories (id, nom_fr, nom_en, data_target) VALUES 
+(1, 'COIFFURE', 'HAIRDRESSING', 'serviceCategoryCoiffure'),
+(2, 'COLORATION', 'COLORING', 'serviceCategoryColoration'),
+(3, 'SOINS DE CHEVEUX', 'HAIR CARE', 'serviceCategoryHairCare'),
+(4, 'ÉPILATION', 'WAXING', 'serviceCategoryWaxing'),
+(5, 'MASSAGE', 'MASSAGE', 'serviceCategoryMassages'),
+(6, 'YEUX', 'EYES', 'serviceCategoryEyes'),
+(7, 'MAQUILLAGE', 'MAKEUP', 'serviceCategoryMakeup'),
+(8, 'MANUCURE', 'MANICURE', 'serviceCategoryNailsManucure'),
+(9, 'PEDICURE', 'PEDICURE', 'serviceCategoryNailsPedicure'),
+(10, 'EXTRA ONGLES', 'NAIL EXTRAS', 'serviceCategoryNailExtras'),
+(11, 'SOIN DE VISAGE', 'FACIALS', 'serviceCategoryFacials');
+
 INSERT INTO site_content (element_key, content_fr, content_en) VALUES 
 -- Barre de Promotion
 ('promo_offer', '🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant!', '🎉 Special Offer: -10% on your first visit! ✨ Book now!'),
@@ -34,7 +47,7 @@ INSERT INTO site_content (element_key, content_fr, content_en) VALUES
 -- Liens Réseaux Sociaux & Contact
 ('link_instagram', 'https://www.instagram.com/onhair_maroc/', 'https://www.instagram.com/onhair_maroc/'),
 ('link_whatsapp', 'https://wa.me/212669577172', 'https://wa.me/212669577172'),
-('link_google_maps', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.7013398396475!2d-6.847190299999999!3d34.0002043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda76de7079a3413%3A0xdc150b08de691131!2sON%20h'AIR%20salon!5e0!3m2!1sfr!2sma!4v1749216268028!5m2!1sfr!2sma', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.7013398396475!2d-6.847190299999999!3d34.0002043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda76de7079a3413%3A0xdc150b08de691131!2sON%20h'AIR%20salon!5e0!3m2!1sfr!2sma!4v1749216268028!5m2!1sfr!2sma'),
+('link_google_maps', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.7013398396475!2d-6.847190299999999!3d34.0002043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda76de7079a3413%3A0xdc150b08de691131!2sON%20h\'AIR%20salon!5e0!3m2!1sfr!2sma!4v1749216268028!5m2!1sfr!2sma', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.7013398396475!2d-6.847190299999999!3d34.0002043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda76de7079a3413%3A0xdc150b08de691131!2sON%20h\'AIR%20salon!5e0!3m2!1sfr!2sma!4v1749216268028!5m2!1sfr!2sma'),
 ('phone_nabil', '+212669577172', '+212669577172'),
 ('phone_fahd', '+212678915564', '+212678915564'),
 
@@ -53,13 +66,13 @@ INSERT INTO site_content (element_key, content_fr, content_en) VALUES
 -- Section À Propos
 ('about_title', 'À Propos de <span class="text-beige-600">Notre salon</span>', 'About <span class="text-beige-600">Our Salon</span>'),
 ('about_intro', 'Découvrez notre passion pour la beauté et l\'excellence, au cœur d\'un espace dédié à votre bien-être.', 'Discover our passion for beauty and excellence, in a space dedicated to your well-being.'),
-('about_commitment_text', 'Chez ON h\'AIR salon, nous croyons que chaque personne mérite de se sentir belle et en confiance. Notre mission est de vous offrir des services de la plus haute qualité dans un environnement chaleureux et luxueux.', 'At ON h’AIR Salon, we believe every woman deserves to feel effortlessly beautiful and confidently herself. Our mission is to deliver exceptional service in a warm, luxurious setting.'),
+('about_commitment_text', 'Chez ON h\'AIR salon, nous croyons que chaque personne mérite de se sentir belle et en confiance. Notre mission est de vous offrir des services de la plus haute qualité dans un environnement chaleureux et luxueux.', 'At ON h\'AIR Salon, we believe every woman deserves to feel effortlessly beautiful and confidently herself. Our mission is to deliver exceptional service in a warm, luxurious setting.'),
 
 -- Équipe (Biographies)
 ('team_title', 'Notre <span class="text-beige-600">Équipe</span> d\'Experts', 'Our <span class="text-beige-600">Expert Team</span>'),
-('team_nabil_bio', 'Artiste dans l’âme, je vois chaque chevelure comme une toile à sublimer. La coloration et la coiffure sont mes moyens d’expression.', 'An artist at heart, I see every head of hair as a canvas to be enhanced. Coloring and hairstyling are my means of expression.'),
-('team_fahd_bio', 'Avec plus de 27 ans d\'expérience, chaque rendez-vous est pour moi un moment d’échange, de confiance et de création.', 'With over 27 years of experience, each appointment is a moment of exchange, trust, and creation for me.'),
-('team_nezha_bio', 'Issue d\'une formation russe, elle sublime votre beauté naturelle tout en vous offrant un moment d’évasion et de sérénité.', 'With Russian training, she enhances your natural beauty while offering you a moment of escape and serenity.'),
+('team_nabil_bio', 'Artiste dans l\'âme, je vois chaque chevelure comme une toile à sublimer. La coloration et la coiffure sont mes moyens d\'expression.', 'An artist at heart, I see every head of hair as a canvas to be enhanced. Coloring and hairstyling are my means of expression.'),
+('team_fahd_bio', 'Avec plus de 27 ans d\'expérience, chaque rendez-vous est pour moi un moment d\'échange, de confiance et de création.', 'With over 27 years of experience, each appointment is a moment of exchange, trust, and creation for me.'),
+('team_nezha_bio', 'Issue d\'une formation russe, elle sublime votre beauté naturelle tout en vous offrant un moment d\'évasion et de sérénité.', 'With Russian training, she enhances your natural beauty while offering you a moment of escape and serenity.'),
 
 -- Contact & Localisation
 ('contact_title', 'Contactez-Nous', 'Contact Us'),
@@ -70,7 +83,6 @@ INSERT INTO site_content (element_key, content_fr, content_en) VALUES
 ('cta_title', 'Prête à révéler votre beauté intérieure?', 'Ready to reveal your inner beauty?'),
 ('cta_button', 'Nous appeler', 'Call Us'),
 ('footer_rights', '© 2025 ON h\'air. Tous droits réservés.', '© 2025 ON h\'air. All rights reserved.');
-
 
 -- Nettoyage de la table services
 TRUNCATE TABLE services;
@@ -102,7 +114,7 @@ INSERT INTO services (category_id, nom_fr, nom_en, prix_base) VALUES
 
 -- SOINS DE CHEVEUX (Catégorie 3)
 INSERT INTO services (category_id, nom_fr, nom_en, prix_base) VALUES 
-(3, 'Soin ON h’AIR', 'ON h’AIR Treatment', 250),
+(3, 'Soin ON h\'AIR', 'ON h\'AIR Treatment', 250),
 (3, 'Soin a base de PLEX', 'Plex-based Treatment', 350),
 (3, 'Soin COLLAGENE', 'Collagen Treatment', 700),
 (3, 'Soin PROTEINE', 'Protein Treatment', 1000),
