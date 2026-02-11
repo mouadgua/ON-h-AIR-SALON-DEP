@@ -1,68 +1,68 @@
 const CACHE_NAME = 'on-h-air-salon-v1';
 const urlsToCache = [
-  './home.html',
-  './translate.js',
-  './manifest.json'
+  '/ON-h-AIR-SALON-DEP/home.html',
+  '/ON-h-AIR-SALON-DEP/translate.js',
+  '/ON-h-AIR-SALON-DEP/manifest.json'
 ];
 
 // Images to cache by category
 const imageCategories = {
   gallery: [
-    './gallerie/coiffure.jpg',
-    './gallerie/esthetique.JPG',
-    './gallerie/nailbar.JPG',
+    '/ON-h-AIR-SALON-DEP/gallerie/coiffure.jpg',
+    '/ON-h-AIR-SALON-DEP/gallerie/esthetique.JPG',
+    '/ON-h-AIR-SALON-DEP/gallerie/nailbar.JPG',
     // Add your most important gallery images here
     // You can add up to 20-30 most viewed images
   ],
   oh: [
-    './images/OH/logo.png',
-    './images/OH/log-normal.png',
-    './images/OH/log-shiny.png',
-    './images/OH/log-shiny-blanc.png',
-    './images/OH/log-noir.png',
-    './images/OH/bg.png',
-    './images/OH/rose1.png',
-    './images/OH/rose2.png',
-    './images/OH/rose3.png',
-    './images/OH/rose4.png'
+    '/ON-h-AIR-SALON-DEP/images/OH/logo.png',
+    '/ON-h-AIR-SALON-DEP/images/OH/log-normal.png',
+    '/ON-h-AIR-SALON-DEP/images/OH/log-shiny.png',
+    '/ON-h-AIR-SALON-DEP/images/OH/log-shiny-blanc.png',
+    '/ON-h-AIR-SALON-DEP/images/OH/log-noir.png',
+    '/ON-h-AIR-SALON-DEP/images/OH/bg.png',
+    '/ON-h-AIR-SALON-DEP/images/OH/rose1.png',
+    '/ON-h-AIR-SALON-DEP/images/OH/rose2.png',
+    '/ON-h-AIR-SALON-DEP/images/OH/rose3.png',
+    '/ON-h-AIR-SALON-DEP/images/OH/rose4.png'
   ],
   services: [
-    './images/service_preview/coiffure.jpg',
-    './images/service_preview/coloration.jpg',
-    './images/service_preview/esthetique.JPG',
-    './images/service_preview/nailbar.JPG'
+    '/ON-h-AIR-SALON-DEP/images/service_preview/coiffure.jpg',
+    '/ON-h-AIR-SALON-DEP/images/service_preview/coloration.jpg',
+    '/ON-h-AIR-SALON-DEP/images/service_preview/esthetique.JPG',
+    '/ON-h-AIR-SALON-DEP/images/service_preview/nailbar.JPG'
   ],
   partners: [
-    './images/partenaires/par1.png',
-    './images/partenaires/par2.png',
-    './images/partenaires/par3.png',
-    './images/partenaires/par4.png',
-    './images/partenaires/par5.png',
-    './images/partenaires/par6.png',
-    './images/partenaires/par7.png',
-    './images/partenaires/par8.png',
-    './images/partenaires/par9.png',
-    './images/partenaires/par10.png',
-    './images/partenaires/par11.png',
-    './images/partenaires/par12.png',
-    './images/partenaires/par13.png',
-    './images/partenaires/par14.png',
-    './images/partenaires/par15.png',
-    './images/partenaires/par16.png',
-    './images/partenaires/par17.png',
-    './images/partenaires/par18.png',
-    './images/partenaires/par19.png',
-    './images/partenaires/par20.png',
-    './images/partenaires/par21.png'
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par1.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par2.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par3.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par4.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par5.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par6.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par7.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par8.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par9.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par10.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par11.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par12.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par13.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par14.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par15.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par16.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par17.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par18.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par19.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par20.png',
+    '/ON-h-AIR-SALON-DEP/images/partenaires/par21.png'
   ],
   staff: [
-    './images/FAHD.jpeg',
-    './images/NABIL.jpeg',
-    './images/NEZHA.jpeg',
-    './images/la-personne.png'
+    '/ON-h-AIR-SALON-DEP/images/FAHD.jpeg',
+    '/ON-h-AIR-SALON-DEP/images/NABIL.jpeg',
+    '/ON-h-AIR-SALON-DEP/images/NEZHA.jpeg',
+    '/ON-h-AIR-SALON-DEP/images/la-personne.png'
   ],
   front: [
-    './images/front/im_front.png'
+    '/ON-h-AIR-SALON-DEP/images/front/im_front.png'
   ]
 };
 
