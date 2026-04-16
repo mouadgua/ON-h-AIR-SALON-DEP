@@ -71,8 +71,6 @@
         </div>
     </footer>
 
-    <!-- Floating Social Buttons (Bottom Left) - Removed as they are moved to top right -->
-
     <!-- Back to Top Button (Replaces WhatsApp Bubble) -->
     <button id="back-to-top-btn" class="hidden fixed bottom-6 right-6 bg-red-500 hover:bg-red-600 text-white w-14 h-14 rounded-full items-center justify-center shadow-lg transition" aria-label="Retour en haut">
         <i class="fas fa-arrow-up text-xl"></i>

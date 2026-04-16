@@ -75,12 +75,12 @@
     <script src="app.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
+            window.addEventListener('load', function() {
                 navigator.serviceWorker.register('./sw.js')
-                    .then(function (registration) {
+                    .then(function(registration) {
                         console.log('ServiceWorker registration successful:', registration.scope);
                     })
-                    .catch(function (error) {
+                    .catch(function(error) {
                         console.log('ServiceWorker registration failed:', error);
                     });
             });
@@ -102,13 +102,60 @@
                 }
             }
         }
+
+        async function loadPage(pageName) {
+            const wrapper = document.getElementById('page-content-wrapper');
+
+            // 1. Optionnel: Ajoute un petit effet de fondu avant le chargement
+            wrapper.style.opacity = '0.5';
+
+            try {
+                const response = await fetch(`./main/${pageName}.php`);
+                if (!response.ok) throw new Error('Erreur réseau');
+                const html = await response.text();
+
+                // 2. Injection du contenu
+                wrapper.innerHTML = html;
+                wrapper.style.opacity = '1';
+
+                // 3. RELANCER LES SCRIPTS SPÉCIFIQUES
+                // Si tu charges la galerie, il faut relancer ton mapping JS
+                if (pageName === 'gallery-page') {
+                    if (typeof renderGallery === 'function') {
+                        renderGallery();
+                    }
+                }
+
+                // Si tu as un système de traduction (translate.js), on le relance
+                if (window.translatePage) {
+                    window.translatePage();
+                }
+
+                // 4. Mise à jour de l'URL sans recharger la page
+                window.history.pushState({
+                    page: pageName
+                }, "", `#${pageName}`);
+
+            } catch (error) {
+                console.error("Erreur:", error);
+            }
+        }
+
+        // Gérer le bouton "Retour" du navigateur
+        window.onpopstate = function(event) {
+            if (event.state && event.state.page) {
+                loadPage(event.state.page);
+            }
+        };
     </script>
 
     <!-- Optional: Connection status indicator -->
     <div id="connection-status"
         style="position: fixed; bottom: 10px; right: 10px; padding: 5px 10px; background: white; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 9999;">
         <?php if (isset($_SERVER['HTTPS'])): ?>
-            <script>updateOnlineStatus();</script>
+            <script>
+                updateOnlineStatus();
+            </script>
         <?php endif; ?>
     </div>
 </body>

@@ -6,27 +6,6 @@
             <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
             <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
             <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
-            <span>🎉 Offre Spéciale: -10% sur votre première visite! ✨ Réservez dès maintenant! </span>
         </div>
     </div>
 
@@ -41,10 +20,10 @@
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <div class="flex flex-col items-center space-y-6 text-center">
-            <a href="#" data-target="accueil" class="mobile-menu-link text-3xl font-medium text-gray-800 hover:text-beige-600 transition-colors" data-translate="navAccueil">Accueil</a>
+            <a href="#" data-target="accueil" class="mobile-menu-link text-3xl font-medium text-gray-800 hover:text-beige-600 transition-colors" data-translate="navAccueil" onclick="loadPage('accueil')">Accueil</a>
             <a href="#about-content" data-target="accueil" class="mobile-menu-link text-3xl font-medium text-gray-800 hover:text-beige-600 transition-colors" data-translate="navAPropos">À propos</a>
-            <a href="#" data-target="services-page" class="mobile-menu-link text-3xl font-medium text-gray-800 hover:text-beige-600 transition-colors" data-translate="navServices">Services</a>
-            <a href="#" data-target="gallery-page" class="mobile-menu-link text-3xl font-medium text-gray-800 hover:text-beige-600 transition-colors" data-translate="navGalerie">Galerie</a>
+            <a href="#" data-target="services-page" class="mobile-menu-link text-3xl font-medium text-gray-800 hover:text-beige-600 transition-colors" data-translate="navServices" onclick="loadPage('accueil')">Services</a>
+            <a href="#" data-target="gallery-page" class="mobile-menu-link text-3xl font-medium text-gray-800 hover:text-beige-600 transition-colors" data-translate="navGalerie" onclick="loadPage('accueil')">Galerie</a>
             <a href="#booking-content" class="mobile-menu-link text-3xl font-medium text-gray-800 hover:text-beige-600 transition-colors" data-translate="navContact">Contact</a>
         </div>
         <a href="tel:+212669577172" class="mt-12 bg-black text-white hover:bg-gray-700 px-8 py-3 md:px-10 md:py-4 rounded-lg text-lg md:text-xl font-semibold flex items-center justify-center shadow-lg transition-transform hover:scale-105">
