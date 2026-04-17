@@ -70,7 +70,7 @@ const BookingContent = () => {
             <div className="md:col-span-1 h-80 md:h-auto md:min-h-[400px]">
               {/* J'ai mis un lien Maps valide (Rabat) pour que tu n'aies pas d'erreur d'affichage */}
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.7289547514336!2d-6.848805624734636!3d33.99946897317666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda76c8c9a3e6f39%3A0x8e833157297eb098!2sRabat!5e0!3m2!1sfr!2sma!4v1700000000000!5m2!1sfr!2sma" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.7013398396475!2d-6.847190299999999!3d34.0002043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda76de7079a3413%3A0xdc150b08de691131!2sON%20h&#39;AIR%20salon!5e0!3m2!1sfr!2sma!4v1776456666823!5m2!1sfr!2sma" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
