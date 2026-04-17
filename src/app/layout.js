@@ -1,4 +1,5 @@
 import "@/app/globals.css"; // Import de ton Tailwind
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import BookingContent from "@/components/layout/booking-content";
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body className={`${inter.variable} bg-white text-gray-700`}>
+        <SpeedInsights/>
         <LanguageProvider>
           <AnimationObserver />
           <Header />
