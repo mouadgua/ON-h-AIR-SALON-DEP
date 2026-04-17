@@ -61,9 +61,9 @@ export default function Home() {
   const scrollPartners = (direction) => {
     if (partnerScrollRef.current) {
       const scrollAmount = 300;
-      partnerScrollRef.current.scrollBy({ 
-        left: direction === 'left' ? -scrollAmount : scrollAmount, 
-        behavior: 'smooth' 
+      partnerScrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
       });
     }
   };
@@ -82,9 +82,9 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             {/* Utilisation de dangerouslySetInnerHTML pour lire les balises <span> stockées dans la traduction */}
-            <h2 
-              className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4" 
-              dangerouslySetInnerHTML={{ __html: t('aboutTitle') }} 
+            <h2
+              className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4"
+              dangerouslySetInnerHTML={{ __html: t('aboutTitle') }}
             />
             <p className="text-gray-600 max-w-2xl mx-auto">
               {t('aboutIntro')}
@@ -145,8 +145,8 @@ export default function Home() {
       <section id="services-preview" className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 fade-in">
-            <h2 
-              className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4" 
+            <h2
+              className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4"
               dangerouslySetInnerHTML={{ __html: t('servicesPreviewTitle') }}
             />
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -154,15 +154,21 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
             {data.services.map((service, index) => (
               <div key={index} className="relative group overflow-hidden h-80 md:h-96 fade-in" style={{ transitionDelay: service.delay }}>
-                <img src={service.img} alt={service.id} className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 transition-all duration-500 text-center bg-black bg-opacity-60 opacity-100 md:bg-opacity-0 md:opacity-0 md:group-hover:bg-opacity-70 md:group-hover:opacity-100">
-                  {/* Traduction dynamique via la clé contenue dans data */}
+                {/* Image with zoom effect only on desktop hover */}
+                <img
+                  src={service.img}
+                  alt={service.id}
+                  className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
+                />
+
+                {/* Overlay: Always visible on mobile, Hover-only on Desktop */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 transition-opacity duration-500 text-center bg-black/50 md:bg-black/0 md:opacity-0 md:group-hover:bg-black/70 md:group-hover:opacity-100">
                   <h3 className="font-serif text-2xl font-bold mb-2">{t(service.tTitle)}</h3>
-                  <p className="mb-4 text-sm">{t(service.tText)}</p>
-                  <Link href="/services" className="inline-block bg-beige-600 hover:bg-beige-700 text-white py-2 px-4 rounded-sm text-sm font-medium transition">
+                  <p className="mb-4 text-sm opacity-90">{t(service.tText)}</p>
+                  <Link href="/services" className="inline-block bg-beige-600 hover:bg-beige-700 text-white py-2 px-6 rounded-sm text-sm font-medium transition-colors">
                     {t('servicePreviewSeeMore')}
                   </Link>
                 </div>
@@ -170,8 +176,8 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-12 fade-in" style={{ transitionDelay: '0.5s' }}>
-            <Link href="/services" className="border border-beige-600 text-beige-600 hover:bg-beige-50 px-8 py-3 rounded-sm font-medium transition inline-block">
+          <div className="text-center mt-12 fade-in">
+            <Link href="/services" className="border border-beige-600 text-beige-600 hover:bg-beige-50 px-8 py-3 rounded-sm font-medium transition-all inline-block">
               {t('servicesPreviewExploreAll')}
             </Link>
           </div>
@@ -182,7 +188,7 @@ export default function Home() {
       <section id="gallery-preview" className="py-12 bg-beige-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 fade-in">
-            <h2 
+            <h2
               className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4"
               dangerouslySetInnerHTML={{ __html: t('galleryPreviewTitle') }}
             />
@@ -213,7 +219,7 @@ export default function Home() {
       <section id="visite-virtuelle" className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 fade-in">
-            <h2 
+            <h2
               className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4"
               dangerouslySetInnerHTML={{ __html: t('virtualTourTitle') }}
             />
@@ -244,7 +250,7 @@ export default function Home() {
       <section id="team-presentation" className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 fade-in">
-            <h2 
+            <h2
               className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4"
               dangerouslySetInnerHTML={{ __html: t('teamTitle') }}
             />
@@ -275,7 +281,7 @@ export default function Home() {
       <section id="testimonials-content" className="py-12 bg-beige-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 fade-in">
-            <h2 
+            <h2
               className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4"
               dangerouslySetInnerHTML={{ __html: t('testimonialsTitle') }}
             />
@@ -314,7 +320,7 @@ export default function Home() {
       <section id="partner-logos" className="py-16 bg-white fade-in">
         <div className="container mx-auto px-4 sm:px-6 md:px-12">
           <div className="text-center mb-12">
-            <h2 
+            <h2
               className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4"
               dangerouslySetInnerHTML={{ __html: t('partnersTitle') }}
             />
@@ -336,13 +342,13 @@ export default function Home() {
             </div>
 
             {/* Boutons fonctionnels avec la méthode scrollPartners */}
-            <button 
+            <button
               onClick={() => scrollPartners('left')}
               className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 focus:outline-none z-10 hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             >
               <FaChevronLeft />
             </button>
-            <button 
+            <button
               onClick={() => scrollPartners('right')}
               className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 focus:outline-none z-10 hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             >
