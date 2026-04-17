@@ -27,7 +27,7 @@ const data = {
   testimonials: [
     { name: 'Halima Lahbab', mt: 'mt-10', tText: 'testimonial1Text' },
     { name: 'Rim EL', mt: 'mt-4', tText: 'testimonial2Text' },
-    { name: 'Oulfa Chlieh', mt: 'mt-4', tText: 'testimonial6Text' }
+    { name: 'Oulfa Chlieh', mt: 'mt-4', tText: 'testimonial3Text' }
   ],
   googleLink: 'https://www.google.com/search?q=ON+h%27AIR+salon+Avis',
   partners: Array.from({ length: 21 }, (_, i) => `/images/partenaires/par${i + 1}.png`)
