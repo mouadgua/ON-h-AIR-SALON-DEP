@@ -91,7 +91,7 @@ export default function Home() {
 
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             <div className="md:w-1/2 fade-in">
-              <img src="/gallerie/im47.jpeg" alt="Intérieur du salon" className="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]" />
+              <img src="/gallerie/im49.jpeg" alt="Intérieur du salon" className="rounded-lg shadow-xl w-3/4 mx-auto h-auto object-cover aspect-[3/4]" />
             </div>
             <div className="md:w-1/2 fade-in" style={{ transitionDelay: '0.1s' }}>
               <h3 className="font-serif text-2xl font-semibold text-gray-700 mb-4">{t('aboutCommitmentTitle')}</h3>
