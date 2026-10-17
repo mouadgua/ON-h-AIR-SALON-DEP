@@ -3,8 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext'; // 1. L'import du contexte
-
-// Importation propre des icônes React
+import Image from 'next/image';
 import { FaInstagram, FaWhatsapp, FaGoogle, FaChevronLeft, FaChevronRight, FaVrCardboard } from 'react-icons/fa';
 
 // LES DONNÉES 
@@ -21,8 +20,7 @@ const data = {
   ],
   team: [
     { img: '/images/NABIL.jpeg', delay: '0.1s', tRole: 'teamNabilRole', tBio: 'teamNabilBio', tTitle: 'teamNabilTitle', link: 'https://www.instagram.com/nabilhaircare/' },
-    { img: '/images/FAHD.jpeg', delay: '0.2s', tRole: 'teamFahdRole', tBio: 'teamFahdBio', tTitle: 'teamFahdTitle', link: 'https://www.instagram.com/fahd_coiff' },
-    { img: '/images/NEZHA.jpeg', delay: '0.3s', tRole: 'teamNezhaRole', tBio: 'teamNezhaBio', tTitle: 'teamNezhaTitle', link: 'https://www.instagram.com/n_on_nails' }
+    { img: '/images/FAHD.jpeg', delay: '0.2s', tRole: 'teamFahdRole', tBio: 'teamFahdBio', tTitle: 'teamFahdTitle', link: 'https://www.instagram.com/fahd_coiff' }
   ],
   testimonials: [
     { name: 'Halima Lahbab', mt: 'mt-10', tText: 'testimonial1Text' },
@@ -248,34 +246,49 @@ export default function Home() {
 
       {/* --- SECTION : ÉQUIPE --- */}
       <section id="team-presentation" className="py-12 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16 fade-in">
-            <h2
-              className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4"
-              dangerouslySetInnerHTML={{ __html: t('teamTitle') }}
-            />
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              {t('teamIntro')}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {data.team.map((member, index) => (
-              <div key={index} className="bg-beige-50 rounded-xl shadow-lg p-6 text-center fade-in slide-up hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300" style={{ transitionDelay: member.delay }}>
-                <img src={member.img} alt={t(member.tTitle)} className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-white shadow-md" />
-                <h3 className="font-serif text-2xl font-bold mb-2">{t(member.tTitle)}</h3>
-                <p className="text-beige-600 font-medium mb-3">{t(member.tRole)}</p>
-                <p className="text-gray-600 text-sm mb-4">{t(member.tBio)}</p>
-                <div className="flex justify-center space-x-3">
-                  <a href={member.link} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-beige-600 transition">
-                    <FaInstagram className="text-2xl" />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16 fade-in">
+          <h2
+            className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4"
+            dangerouslySetInnerHTML={{ __html: t('teamTitle') }}
+          />
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            {t('teamIntro')}
+          </p>
         </div>
-      </section>
+
+        <div className="flex flex-wrap justify-center gap-8">
+          {data.team.map((member, index) => (
+            <div 
+              key={index} 
+              className="w-full md:w-[calc(33.333%-2rem)] max-w-sm bg-beige-50 rounded-xl shadow-lg p-6 text-center fade-in slide-up hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300" 
+              style={{ transitionDelay: member.delay }}
+            >
+              {/* Utilisation de next/image pour l'optimisation des performances */}
+              <div className="relative w-32 h-32 mx-auto mb-6">
+                <Image 
+                  src={member.img} 
+                  alt={t(member.tTitle)} 
+                  fill
+                  sizes="(max-width: 768px) 100vw, 128px"
+                  className="rounded-full object-cover border-4 border-white shadow-md" 
+                />
+              </div>
+              
+              <h3 className="font-serif text-2xl font-bold mb-2">{t(member.tTitle)}</h3>
+              <p className="text-beige-600 font-medium mb-3">{t(member.tRole)}</p>
+              <p className="text-gray-600 text-sm mb-4">{t(member.tBio)}</p>
+              
+              <div className="flex justify-center space-x-3">
+                <a href={member.link} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-beige-600 transition">
+                  <FaInstagram className="text-2xl" />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
       {/* --- SECTION : TÉMOIGNAGES --- */}
       <section id="testimonials-content" className="py-12 bg-beige-50">
